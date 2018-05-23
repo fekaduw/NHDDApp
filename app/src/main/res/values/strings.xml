@@ -20,5 +20,6 @@
     <string name="about_app">The National Health Data Dictionary (NHDD) is a terminology management system developed using Open Concept Lab (OCL) and has been deployed since 2016. Currently, the National Classification of Diseases (NCoD) and revised HMIS indicators (of 2017) are defined and accessible via this mobile app and the web version.\n\n This app is designed with the support of the Data Use Partnership (DUP) Project.</string>
     <string name="title_activity_splash">SplashActivity</string>
     <string name="title_activity_feedback">Feedback</string>
+    <string name="nav_help">Help</string>
     <string name="message_activity_feedback">We\'ll appreciate a word or two from you on the app.</string>
 </resources>

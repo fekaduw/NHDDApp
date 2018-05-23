@@ -34,7 +34,4 @@ dependencies {
     implementation "com.android.support:support-compat:27.1.1"
 
     implementation 'com.miguelcatalan:materialsearchview:1.4.0'
-
-    //implementation 'com.zzhoujay.materialcolors:materialcolors:1.0.0'
-
 }
