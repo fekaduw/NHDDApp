@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="350dp"
+    android:layout_height="470dp"
+    android:layout_gravity="center"
+    android:padding="15dp"
+    android:background="@color/lightGray"
+    >
+
+    <ImageView
+        android:layout_width="137dp"
+        android:layout_height="91dp"
+        android:layout_gravity="center"
+        android:scaleType="fitCenter"
+        android:src="@drawable/fmon_logo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="15dp"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:textSize="25dp"
+        android:text="@string/title_activity_feedback"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="15dp"
+        android:text="@string/message_activity_feedback"/>
+    <TableRow
+        android:id="@+id/hr"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#D3D3D3"></TableRow>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:inputType="text"
+        android:id="@+id/feedback_textView"
+        android:hint="Your opinion"
+        />
+
+    <EditText
+        android:id="@+id/feedback_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:paddingTop="20dp"
+        android:hint="Your email (required)"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingTop="20dp"
+        android:orientation="horizontal"
+        android:layout_gravity="right">
+    <Button
+        android:id="@+id/cancel_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+        android:textColor="@color/light_blue"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:text="Cancel"/>
+
+    <Button
+        android:id="@+id/send_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/light_blue"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:text="Send"/>
+    </LinearLayout>
+</LinearLayout>
