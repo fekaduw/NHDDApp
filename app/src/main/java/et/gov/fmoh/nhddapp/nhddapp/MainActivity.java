@@ -56,13 +56,7 @@ import retrofit2.converter.gson.GsonConverterFactory;*/
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-   /* private ListView conceptsListView;
-    private SectionsPageAdapter mSectionsPageAdapter;
-    private ViewPager mViewPager;
-    private TabLayout tabLayout;*/
-
-
-   Dialog dialog ;
+    Dialog dialog ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
