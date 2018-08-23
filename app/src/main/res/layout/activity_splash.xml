@@ -6,8 +6,7 @@
     android:layout_height="fill_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="@color/splashscreenBlue"
-    >
+    android:background="@drawable/gradient_background">
     <ImageView
         android:id="@+id/logo"
         android:layout_width="150dp"
@@ -27,7 +26,6 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/app_name_nhdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/app_name_nhdd"
@@ -36,7 +34,6 @@
             app:fontFamily="@font/paytone_one" />
 
         <TextView
-            android:id="@+id/app_name_pocket"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
@@ -54,7 +51,6 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/version"
         android:gravity="center"
         android:text="@string/version"
         android:paddingBottom="15dp"

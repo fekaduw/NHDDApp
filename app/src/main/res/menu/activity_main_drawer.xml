@@ -9,13 +9,19 @@
             android:icon="@drawable/ic_menu_about"
             android:title="@string/nav_about" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_update"
+            android:icon="@drawable/ic_update_black_24dp"
+            android:title="@string/nav_update" />
+        <item
+            android:id="@+id/nav_setting"
             android:icon="@drawable/ic_menu_manage"
             android:title="@string/nav_setting" />
         <item
-            android:id="@+id/nav_help"
+            android:icon="@drawable/ic_favorite_black_24dp"
+            android:title="@string/nav_favorite" />
+        <item
             android:icon="@drawable/ic_menu_help"
-            android:title="@string/nav_help" />
+            android:title="@string/nav_help_support" />
     </group>
 
     <item android:title="@string/nav_communicate">

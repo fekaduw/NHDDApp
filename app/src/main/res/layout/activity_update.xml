@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@color/white"
+    >
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/fmon_logo"
+        android:layout_centerInParent="true"
+        />
+
+    <LinearLayout
+        android:id="@+id/head_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/logo"
+        android:paddingTop="15dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name_nhdd"
+            android:textColor="@color/light_blue"
+            android:textSize="45sp"
+            app:fontFamily="@font/paytone_one" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="@string/app_name_pocket"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="45sp"
+            app:fontFamily="@font/cairo" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        >
+
+        <TextView
+            android:id="@+id/info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/head_text"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:text="@string/update_info"
+            android:textColor="@color/listview_maintext_color"
+            android:textSize="15sp"
+            app:fontFamily="@font/cairo" />
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/update_progressBar"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/update_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/data_update"
+        android:gravity="center"
+        android:textColor="@color/cardview_shadow_start_color"
+        android:textSize="15sp"
+        android:padding="@dimen/activity_horizontal_margin"
+        app:fontFamily="@font/cairo"
+        android:layout_below="@+id/info"
+        />
+    </LinearLayout>
+</RelativeLayout>

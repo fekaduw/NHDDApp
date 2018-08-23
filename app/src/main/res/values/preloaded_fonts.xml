@@ -9,6 +9,8 @@
         <item>@font/hind</item>
         <item>@font/holtwood_one_sc</item>
         <item>@font/lato_thin</item>
+        <item>@font/montserrat</item>
+        <item>@font/montserrat_bold</item>
         <item>@font/paytone_one</item>
     </array>
 </resources>

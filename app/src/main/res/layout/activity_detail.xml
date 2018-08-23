@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.DetailActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:id="@+id/detail_header"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/gradient_background"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/concept_icon"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/circle_concept_icon_blue"
+            android:gravity="center"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="C"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            app:fontFamily="@font/montserrat_bold" />
+
+        <TextView
+            android:id="@+id/title_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="15dp"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
+            android:text="Colera"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:fontFamily="@font/montserrat" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/detail_header"
+        android:orientation="vertical"
+        android:layout_marginTop="250dp"
+        >
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_horizontal"
+            >
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:srcCompat="@drawable/ic_description_detail"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="2dp"
+                android:paddingLeft="55dp"
+                android:paddingTop="15dp"
+                android:text="Description"
+                android:textAllCaps="true"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:fontFamily="@font/montserrat_bold" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/desc_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="15dp"
+            android:paddingLeft="55dp"
+            android:text="@string/pref_description_social_recommendations"
+            android:textSize="15sp"
+            app:fontFamily="@font/montserrat" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#b5e8ff"
+            android:layout_marginLeft="15dp" />
+<RelativeLayout
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_gravity="fill_horizontal"
+    >
+<ImageView
+    android:layout_width="30dp"
+    android:layout_height="30dp"
+    app:srcCompat="@drawable/ic_class_detail"
+    android:layout_marginLeft="15dp"
+    android:layout_marginTop="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="2dp"
+        android:paddingLeft="55dp"
+        android:paddingTop="15dp"
+        android:text="Class"
+        android:textAllCaps="true"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:fontFamily="@font/montserrat_bold" />
+</RelativeLayout>
+
+        <TextView
+            android:id="@+id/category_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="15dp"
+            android:paddingLeft="55dp"
+            android:text="Diagnosis"
+            android:textSize="15sp"
+            app:fontFamily="@font/montserrat" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#b5e8ff"
+            android:layout_marginLeft="15dp" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_horizontal"
+            >
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:srcCompat="@drawable/ic_version_created_on"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="2dp"
+                android:paddingLeft="55dp"
+                android:paddingTop="15dp"
+                android:text="Version created on"
+                android:textAllCaps="true"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:fontFamily="@font/montserrat_bold" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/version_created_on"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="15dp"
+            android:paddingLeft="55dp"
+            android:text="Diagnosis"
+            android:textSize="15sp"
+            app:fontFamily="@font/montserrat" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#b5e8ff"
+            android:layout_marginLeft="15dp" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_horizontal"
+            >
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:srcCompat="@drawable/ic_version_detail"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="2dp"
+                android:paddingLeft="55dp"
+                android:paddingTop="15dp"
+                android:text="Version"
+                android:textAllCaps="true"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:fontFamily="@font/montserrat_bold" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/is_version_latest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="55dp"
+            android:text="Latest version"
+            android:textSize="15sp"
+            app:fontFamily="@font/montserrat" />
+    </LinearLayout>
+<!--
+</RelativeLayout>-->
+</android.support.design.widget.CoordinatorLayout>

@@ -2,47 +2,96 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="?attr/backgroundColor"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:background="@color/white"
-        android:padding="15dp">
+        android:layout_marginBottom="1dp"
+        android:background="?attr/backgroundColor"
+        android:padding="10dp"
+        >
 
-        <ImageView
+        <!--<ImageView
             android:id="@+id/imageView"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_weight="0.11"
-            android:src="@drawable/concept_icon" />
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_ncod" />-->
+
+        <TextView
+            android:id="@+id/concept_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/circle_concept_icon_blue"
+            android:text="C"
+            android:layout_marginTop="0dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:fontFamily="sans-serif" />
 
         <TextView
             android:id="@+id/concept_name_textview"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="15dp"
-            android:layout_toEndOf="@+id/imageView"
-            android:layout_toRightOf="@+id/imageView"
-            android:fontFamily="casual"
-            android:text="@+id/label"
-            android:textSize="19sp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@+id/concept_icon"
+            android:layout_toRightOf="@+id/concept_icon"
+            android:background="?attr/backgroundColor"
+            android:fontFamily="roboto"
+            android:text="Main text goes here..."
+
+            android:textColor="?attr/mainTextColor"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:fontFamily="@font/hind" />
+
+        <ImageView
+            android:id="@+id/favorite_imageview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/concept_name_textview"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignRight="@+id/concept_name_textview"
+            android:layout_alignParentTop="true"
+            android:contentDescription="@string/nav_favorite"
+            android:padding="0dp"
+            android:src="@mipmap/ic_favorite_" />
 
         <TextView
             android:id="@+id/concept_desc_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/concept_name_textview"
-            android:layout_toEndOf="@+id/imageView"
-            android:layout_toRightOf="@+id/imageView"
-            android:layout_weight="1"
-            android:paddingLeft="5dp"
-            android:textColor="@color/splashscreenBlue"
-            app:fontFamily="sans-serif-smallcaps" />
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/concept_icon"
+            android:layout_toRightOf="@+id/concept_icon"
+
+            android:text="@string/nav_header_desc"
+            android:textColor="?attr/textColor"
+            android:textSize="14sp"
+            app:fontFamily="sans-serif" />
+
+        <!--<ImageView
+            android:id="@+id/favorite_imageview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/concept_name_textview"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignRight="@+id/concept_desc_textview"
+            android:layout_below="@+id/concept_name_textview"
+            android:contentDescription="@string/nav_favorite"
+            android:padding="0dp"
+            android:src="@mipmap/ic_favorite_" />-->
+
     </RelativeLayout>
 </LinearLayout>

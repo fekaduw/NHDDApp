@@ -1,9 +1,12 @@
 package et.gov.fmoh.nhddapp.nhddapp.model;
 
-public class Concept {
-    private String display_name;
+import java.util.List;
 
-    public String getDisplay_name() {
-        return display_name;
-    }
+public interface Concept<T> {
+    public List<T> getConcepts();
+    public  String getDisplay_name();
+    public  String getConcept_class();
+    public  String getDescriptions();
+    public  String getVersion_created_on();
+    public  Boolean is_latest_version();
 }

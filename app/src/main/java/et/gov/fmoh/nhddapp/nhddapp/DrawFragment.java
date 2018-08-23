@@ -12,8 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import et.gov.fmoh.nhddapp.nhddapp.fragments.Tab1Fragment;
-import et.gov.fmoh.nhddapp.nhddapp.fragments.Tab2Fragment;
+import et.gov.fmoh.nhddapp.nhddapp.views.fragments.Tab1Fragment;
+import et.gov.fmoh.nhddapp.nhddapp.views.fragments.Tab2Fragment;
 
 public class DrawFragment extends Fragment {
 

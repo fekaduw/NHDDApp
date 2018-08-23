@@ -5,7 +5,8 @@
     <color name="colorAccent">#FF4081</color>
     <color name="white">#FFF</color>
     <color name="lightGray">#e8e8e8</color>
-    <color name="splashscreenBlue">#3E8EDE</color>
+    <color name="grey">#9e9e9e</color>
     <color name="light_blue">#6eabe4</color>
-
+    <color name="lightenGrey3">#eeeeee</color>
+    <color name="listview_maintext_color">#484232</color>
 </resources>
