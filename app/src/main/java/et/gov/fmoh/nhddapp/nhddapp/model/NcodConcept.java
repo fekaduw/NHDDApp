@@ -25,7 +25,7 @@ public class NcodConcept extends RealmObject //implements Parcelable
     private String updated_on;
     private String version_created_on;
     private String version_created_by;
-    //private NcodExtras ncodExtras;
+    private NcodExtras ncodExtras;
     private String mappings;
     private boolean is_latest_version;
 }

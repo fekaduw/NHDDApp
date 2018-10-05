@@ -14,8 +14,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import et.gov.fmoh.nhddapp.nhddapp.R;
-import et.gov.fmoh.nhddapp.nhddapp.helpers.CONST;
-import et.gov.fmoh.nhddapp.nhddapp.helpers.SharedPref;
+import et.gov.fmoh.nhddapp.nhddapp.utils.CONST;
+import et.gov.fmoh.nhddapp.nhddapp.utils.SharedPref;
 
 public class SplashActivity extends AppCompatActivity {
 

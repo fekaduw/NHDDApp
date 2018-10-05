@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ncod_types_prompt">Choose an NCoD version</string>
+
+    <string-array name="ncod_types">
+            <item>Mini</item>
+            <item>Compact</item>
+            <item>Extended</item>
+        </string-array>
+</resources>

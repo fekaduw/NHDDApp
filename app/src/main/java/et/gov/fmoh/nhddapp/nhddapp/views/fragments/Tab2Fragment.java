@@ -12,11 +12,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -24,21 +21,16 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import et.gov.fmoh.nhddapp.nhddapp.helpers.CONST;
-import et.gov.fmoh.nhddapp.nhddapp.helpers.DatabaseHelper;
-import et.gov.fmoh.nhddapp.nhddapp.helpers.DataHelper;
+import et.gov.fmoh.nhddapp.nhddapp.utils.CONST;
+import et.gov.fmoh.nhddapp.nhddapp.utils.DatabaseHelper;
 import et.gov.fmoh.nhddapp.nhddapp.model.HMISIndicatorConcept;
-import et.gov.fmoh.nhddapp.nhddapp.model.NcodConcept;
-import et.gov.fmoh.nhddapp.nhddapp.service.BaseAPI;
 import et.gov.fmoh.nhddapp.nhddapp.service.HmisDataSyncIntentService;
-import et.gov.fmoh.nhddapp.nhddapp.service.NcodDataSyncIntentService;
 import et.gov.fmoh.nhddapp.nhddapp.R;
-import et.gov.fmoh.nhddapp.nhddapp.views.adapter.CustomListViewAdapter;
 import et.gov.fmoh.nhddapp.nhddapp.views.adapter.HMISIndicatorsCustomListViewAdapter;
 import io.realm.Realm;
 import io.realm.RealmChangeListener;
 
-import static et.gov.fmoh.nhddapp.nhddapp.helpers.CONST.TAG;
+import static et.gov.fmoh.nhddapp.nhddapp.utils.CONST.TAG;
 
 
 public class Tab2Fragment extends Fragment implements SearchView.OnQueryTextListener{
@@ -171,14 +163,14 @@ public class Tab2Fragment extends Fragment implements SearchView.OnQueryTextList
         recyclerView = view.findViewById(R.id.recView);
 
         progressBar = view.findViewById(R.id.progress);
-        swipeRefreshLayout = view.findViewById(R.id.refreshTab1ListView);
+        /*swipeRefreshLayout = view.findViewById(R.id.refreshTab1ListView);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 loadData();
             }
         });
-
+*/
         textViewNotFound = view.findViewById(R.id.textViewNotfound);
         textViewNotFound.setText("Loading...");
 
@@ -197,12 +189,12 @@ public class Tab2Fragment extends Fragment implements SearchView.OnQueryTextList
     /*shows/hides the progress bar based on the value of isShow - true/show, false/hide*/
     private void showProgressBar(boolean isShow) {
         if (isShow) {
-            if (!swipeRefreshLayout.isRefreshing()) {
+            //if (!swipeRefreshLayout.isRefreshing()) {
                 progressBar.setVisibility(View.VISIBLE);
-            }
+            //}
         } else {
             progressBar.setVisibility(View.GONE);
-            swipeRefreshLayout.setRefreshing(false);
+            //swipeRefreshLayout.setRefreshing(false);
         }
     }
 

@@ -9,6 +9,6 @@
         <attr name="tintColor" format="color" />
         <attr name="buttonColor" format="color" />
         <attr name="statusColor" format="color" />
-        <attr name="actionBarSize" format="dimension" />
+        <!--<attr name="actionBarSize" format="dimension" />-->
     </declare-styleable>
 </resources>

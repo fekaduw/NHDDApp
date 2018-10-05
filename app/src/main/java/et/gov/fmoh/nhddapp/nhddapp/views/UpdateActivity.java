@@ -20,10 +20,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import et.gov.fmoh.nhddapp.nhddapp.R;
-import et.gov.fmoh.nhddapp.nhddapp.helpers.CONST;
-import et.gov.fmoh.nhddapp.nhddapp.helpers.HMISIndicatorUpdateManager;
-import et.gov.fmoh.nhddapp.nhddapp.helpers.NCoDUpdateManager;
-import et.gov.fmoh.nhddapp.nhddapp.helpers.SharedPref;
+import et.gov.fmoh.nhddapp.nhddapp.utils.CONST;
+import et.gov.fmoh.nhddapp.nhddapp.utils.HMISIndicatorUpdateManager;
+import et.gov.fmoh.nhddapp.nhddapp.utils.NCoDUpdateManager;
+import et.gov.fmoh.nhddapp.nhddapp.utils.SharedPref;
 import et.gov.fmoh.nhddapp.nhddapp.service.NcodDataSyncIntentService;
 
 public class UpdateActivity extends Activity {
@@ -80,8 +80,8 @@ public class UpdateActivity extends Activity {
             sharedPref.setHMISIndicatorVersion(null);
 
             Intent intent = new Intent(this, NcodDataSyncIntentService.class);
-            intent.putExtra("ncod_version", sharedPref.getNCoDVersion());
-            intent.putExtra("hmis_version", sharedPref.getHMISIndicatorVersion());
+            intent.putExtra("version", sharedPref.getNCoDVersion());
+            //intent.putExtra("hmis_version", sharedPref.getHMISIndicatorVersion());
 
             startService(intent);
 

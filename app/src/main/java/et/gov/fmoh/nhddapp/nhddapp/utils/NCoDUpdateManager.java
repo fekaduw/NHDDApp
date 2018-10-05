@@ -1,4 +1,4 @@
-package et.gov.fmoh.nhddapp.nhddapp.helpers;
+package et.gov.fmoh.nhddapp.nhddapp.utils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -22,8 +22,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static et.gov.fmoh.nhddapp.nhddapp.helpers.DatabaseHelper.getCurrentDate;
-import static et.gov.fmoh.nhddapp.nhddapp.helpers.CONST.TAG;
+import static et.gov.fmoh.nhddapp.nhddapp.utils.DataHelper.deleteFile;
+import static et.gov.fmoh.nhddapp.nhddapp.utils.DatabaseHelper.getCurrentDate;
+import static et.gov.fmoh.nhddapp.nhddapp.utils.CONST.TAG;
 
 public class NCoDUpdateManager {
 
@@ -53,11 +54,11 @@ public class NCoDUpdateManager {
                     Log.d(TAG, "onResponse() in updateNCoDData() called. Server contacted and has file");
 
                     if (isVersionLatest(currentVersion, response.body())) {
-
+                        latestVersion = response.body().getCreated_on();
                         Log.d(TAG, "The version on the server is latest. Version: " + latestVersion);
 
                         //fetch the export data
-                        getNCodData(latestVersion);
+                        getNCodData(response.body().getId());
                     }
 
                 } else {
@@ -69,7 +70,7 @@ public class NCoDUpdateManager {
             @Override
             public void onFailure(Call<ConceptVersion> call, Throwable t) {
                 latestVersion = null;
-                Log.e(TAG, "onFailure() called. Error occurred when checking the version of the file to download.");
+                Log.e(TAG, "onFailure() called. Error occurred when checking the version of the NCoD file to download.\n" + t.getMessage());
             }
         });
 
@@ -88,7 +89,7 @@ public class NCoDUpdateManager {
         Log.d(TAG, "Version no. from server: " + version.getCreated_on());
         Log.d(TAG, "Current version no.: " + currentVersion);
 
-        if (DataTypeConverter.ConvertStringToDate(currentVersion).before(DataTypeConverter.ConvertStringToDate(version.getCreated_on())))
+        if (DataTypeConverter.convertStringToDate(currentVersion).before(DataTypeConverter.convertStringToDate(version.getCreated_on())))
         {
             latestVersion = version.getCreated_on();
             return true;
@@ -122,12 +123,12 @@ public class NCoDUpdateManager {
     }*/
 
 
-    private void getNCodData(final String currentVersion) {
+    private void getNCodData(final String version) {
 
         Log.d(TAG, "*************** inside getNCoDData() in NCoDUpdateManger() ***************");
 
         //API communication...
-        Call<ResponseBody> concepts = baseAPI.getNCoDExport(currentVersion);
+        Call<ResponseBody> concepts = baseAPI.getNCoDExport(version);
         concepts.enqueue(new Callback<ResponseBody>() {
             @SuppressLint("StaticFieldLeak")
             @Override
@@ -168,19 +169,23 @@ public class NCoDUpdateManager {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.e(TAG, "There was an error in downloading the NCoD file.");
+                Log.e(TAG, "There was an error in downloading the NCoD file.\n"+t.getMessage());
             }
         });
     }
 
     private void populateData() {
         realm = Realm.getDefaultInstance();
+        String currentDate = null;
+        File file = null;
+
         Log.d(TAG, "Is the realm object closed? " + realm.isClosed());
+
         try {
             realm.beginTransaction();
 
-            String currentDate = getCurrentDate().replace("-", "");
-            File file = new File(CONST.LOCAL_STORAGE, "NCoD_" + currentDate + "_export.json");
+            currentDate = getCurrentDate().replace("-", "");
+            file = new File(CONST.LOCAL_STORAGE, "NCoD_" + currentDate + "_export.json");
 
             Log.d(TAG, " ********** fileName after unzip : " + file.toString());
 
@@ -208,10 +213,13 @@ public class NCoDUpdateManager {
         } finally {
             //save the version in the sharedPref
             SharedPref sharedPref = new SharedPref(context);
-            sharedPref.setHMISIndicatorVersion(latestVersion);
+            sharedPref.setNCoDVersion(latestVersion);
 
-            if (realm != null)
+            deleteFile(new File (CONST.LOCAL_STORAGE,"NCoD_"+currentDate+".zip"), file );
+
+            if (realm != null) {
                 realm.close();
+            }
         }
     }
 }

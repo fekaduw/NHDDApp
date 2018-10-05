@@ -12,9 +12,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class NcodExtras extends RealmObject implements Serializable {
-    @SerializedName("ICD10-Chapter")
+    @SerializedName("ICD-10 Chapter")
     private String ICD10_Block;
 
-    @SerializedName("ICD10-Chapter")
+    @SerializedName("ICD-10 Block")
     private String ICD10_Chapter;
 }

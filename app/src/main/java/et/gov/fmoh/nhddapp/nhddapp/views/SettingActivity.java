@@ -8,7 +8,7 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 
 import et.gov.fmoh.nhddapp.nhddapp.R;
-import et.gov.fmoh.nhddapp.nhddapp.helpers.SharedPref;
+import et.gov.fmoh.nhddapp.nhddapp.utils.SharedPref;
 
 public class SettingActivity extends AppCompatActivity {
     SharedPref sharedPref;

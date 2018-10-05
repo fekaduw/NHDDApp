@@ -1,4 +1,4 @@
-package et.gov.fmoh.nhddapp.nhddapp.helpers;
+package et.gov.fmoh.nhddapp.nhddapp.utils;
 
 import android.support.annotation.Nullable;
 
@@ -10,7 +10,7 @@ public class DataTypeConverter {
     private static SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
     @Nullable
-    public static Date ConvertStringToDate(String stringToConvert) {
+    public static Date convertStringToDate(String stringToConvert) {
         try {
             return format.parse(stringToConvert);
         } catch (ParseException e) {

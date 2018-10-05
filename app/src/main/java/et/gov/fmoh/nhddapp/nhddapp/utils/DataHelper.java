@@ -1,4 +1,4 @@
-package et.gov.fmoh.nhddapp.nhddapp.helpers;
+package et.gov.fmoh.nhddapp.nhddapp.utils;
 
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -22,7 +22,7 @@ import io.realm.RealmList;
 import io.realm.RealmResults;
 import okhttp3.ResponseBody;
 
-import static et.gov.fmoh.nhddapp.nhddapp.helpers.DatabaseHelper.getCurrentDate;
+import static et.gov.fmoh.nhddapp.nhddapp.utils.DatabaseHelper.getCurrentDate;
 
 public class DataHelper {
 
@@ -148,6 +148,14 @@ public class DataHelper {
             return true;
         }
         return false;
+    }
+
+    public static void deleteFile(File zipFile, File exportFile) {
+        if(zipFile!=null)
+            zipFile.delete();
+
+        if(exportFile!=null)
+            exportFile.delete();
     }
 
     @Nullable

@@ -21,19 +21,16 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import et.gov.fmoh.nhddapp.nhddapp.helpers.CONST;
-import et.gov.fmoh.nhddapp.nhddapp.helpers.DatabaseHelper;
-import et.gov.fmoh.nhddapp.nhddapp.model.NCoD;
-import et.gov.fmoh.nhddapp.nhddapp.model.NcodConcept;
+import et.gov.fmoh.nhddapp.nhddapp.model.NcodExtras;
+import et.gov.fmoh.nhddapp.nhddapp.utils.CONST;
+import et.gov.fmoh.nhddapp.nhddapp.utils.DatabaseHelper;
 import et.gov.fmoh.nhddapp.nhddapp.service.NcodDataSyncIntentService;
-import et.gov.fmoh.nhddapp.nhddapp.views.adapter.CustomListViewAdapter;
+import et.gov.fmoh.nhddapp.nhddapp.views.adapter.CategoryListViewAdapter;
 import et.gov.fmoh.nhddapp.nhddapp.R;
 import io.realm.Realm;
 import io.realm.RealmChangeListener;
-import io.realm.RealmList;
-import io.realm.RealmResults;
 
-import static et.gov.fmoh.nhddapp.nhddapp.helpers.CONST.TAG;
+import static et.gov.fmoh.nhddapp.nhddapp.utils.CONST.TAG;
 
 public class Tab1Fragment extends Fragment implements SearchView.OnQueryTextListener{
 
@@ -48,10 +45,10 @@ public class Tab1Fragment extends Fragment implements SearchView.OnQueryTextList
     private Integer imageViewFavorite;
 
     //custom adapter
-    private CustomListViewAdapter customListViewAdapter;
+    private CategoryListViewAdapter categoryListViewAdapter;
 
     private Realm realm;
-    public static ArrayList<NcodConcept> concepts =null;
+    public static ArrayList<NcodExtras> concepts =null;
     private Context context;
 
     private DatabaseHelper databaseHelper;
@@ -79,7 +76,7 @@ public class Tab1Fragment extends Fragment implements SearchView.OnQueryTextList
     @Override
     public boolean onQueryTextChange(String newText) {
         String text = newText;
-        customListViewAdapter.filter(text);
+        categoryListViewAdapter.filter(text);
         return false;
     }
 
@@ -88,7 +85,7 @@ public class Tab1Fragment extends Fragment implements SearchView.OnQueryTextList
         public void onChange(Object o) {
             Log.d(TAG, "OnChange() method in change listener called");
 
-            concepts = databaseHelper.getNCoDConcepts(realm);
+            concepts = databaseHelper.getNCoDCategories(realm); //databaseHelper.getNCoDConcepts(realm);
 
             try{
             if (concepts!=null) {
@@ -127,7 +124,7 @@ public class Tab1Fragment extends Fragment implements SearchView.OnQueryTextList
 
         Log.d(TAG, "Inside onCreateView() Tab1Fragment");
 
-        concepts = databaseHelper.getNCoDConcepts(realm);
+        concepts = databaseHelper.getNCoDCategories(realm);
 
         if (concepts!=null) {
 
@@ -157,8 +154,8 @@ public class Tab1Fragment extends Fragment implements SearchView.OnQueryTextList
 
     //initializes the custom adapter
     private void initCustomAdapter() {
-        customListViewAdapter = new CustomListViewAdapter(getActivity(), concepts, imageViewFavorite);
-        recyclerView.setAdapter(customListViewAdapter);
+        categoryListViewAdapter = new CategoryListViewAdapter(getActivity(), concepts, imageViewFavorite);
+        recyclerView.setAdapter(categoryListViewAdapter);
     }
 
     // setup different views on the fragment layout
@@ -166,13 +163,13 @@ public class Tab1Fragment extends Fragment implements SearchView.OnQueryTextList
         recyclerView = view.findViewById(R.id.recView);
 
         progressBar = view.findViewById(R.id.progress);
-        swipeRefreshLayout = view.findViewById(R.id.refreshTab1ListView);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        //swipeRefreshLayout = view.findViewById(R.id.refreshTab1ListView);
+        /*swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 loadData();
             }
-        });
+        });*/
 
         textViewNotFound = view.findViewById(R.id.textViewNotfound);
         textViewNotFound.setText("Loading...");
@@ -192,12 +189,12 @@ public class Tab1Fragment extends Fragment implements SearchView.OnQueryTextList
     /*shows/hides the progress bar based on the value of isShow - true/show, false/hide*/
     private void showProgressBar(boolean isShow) {
         if (isShow) {
-            if (!swipeRefreshLayout.isRefreshing()) {
+            //if (!swipeRefreshLayout.isRefreshing()) {
                 progressBar.setVisibility(View.VISIBLE);
-            }
+            //}
         } else {
             progressBar.setVisibility(View.GONE);
-            swipeRefreshLayout.setRefreshing(false);
+            //swipeRefreshLayout.setRefreshing(false);
         }
     }
 

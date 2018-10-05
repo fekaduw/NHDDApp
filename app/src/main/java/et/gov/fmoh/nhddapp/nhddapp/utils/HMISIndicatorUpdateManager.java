@@ -1,7 +1,6 @@
-package et.gov.fmoh.nhddapp.nhddapp.helpers;
+package et.gov.fmoh.nhddapp.nhddapp.utils;
 
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.text.TextUtils;
@@ -12,7 +11,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Date;
 
 import et.gov.fmoh.nhddapp.nhddapp.model.ConceptVersion;
 import et.gov.fmoh.nhddapp.nhddapp.model.HMISIndicator;
@@ -24,8 +22,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static et.gov.fmoh.nhddapp.nhddapp.helpers.CONST.TAG;
-import static et.gov.fmoh.nhddapp.nhddapp.helpers.DatabaseHelper.getCurrentDate;
+import static et.gov.fmoh.nhddapp.nhddapp.utils.CONST.TAG;
+import static et.gov.fmoh.nhddapp.nhddapp.utils.DataHelper.deleteFile;
+import static et.gov.fmoh.nhddapp.nhddapp.utils.DatabaseHelper.getCurrentDate;
 
 public class HMISIndicatorUpdateManager {
     private static BaseAPI baseAPI = BaseAPI.Factory.create();
@@ -54,11 +53,11 @@ public class HMISIndicatorUpdateManager {
                     Log.d(TAG, "onResponse() in updateHMISIndicatorData() called. Server contacted and has file");
 
                     if (isVersionLatest(currentVersion, response.body())) {
-
+                        latestVersion = response.body().getCreated_on();
                         Log.d(TAG, "The version on the server is latest. Version: " + latestVersion);
 
                         //fetch the export data
-                        getHMISIndicatorsData(latestVersion);
+                        getHMISIndicatorsData(response.body().getId());
                     }
 
                 } else {
@@ -70,7 +69,7 @@ public class HMISIndicatorUpdateManager {
             @Override
             public void onFailure(Call<ConceptVersion> call, Throwable t) {
                 latestVersion = null;
-                Log.e(TAG, "onFailure() called. Error occurred when checking the version of the file to download.");
+                Log.e(TAG, "onFailure() called. Error occurred when checking the version of the HMIS Indicators file to download.\n"+t.getMessage());
             }
         });
 
@@ -129,19 +128,19 @@ public class HMISIndicatorUpdateManager {
         Log.d(TAG, "Version no. from server: " + version.getCreated_on());
         Log.d(TAG, "Current version no.: " + currentVersion);
 
-        if (DataTypeConverter.ConvertStringToDate(currentVersion).before(DataTypeConverter.ConvertStringToDate(version.getCreated_on())))
+        if (DataTypeConverter.convertStringToDate(currentVersion).before(DataTypeConverter.convertStringToDate(version.getCreated_on())))
         {
             latestVersion = version.getCreated_on();
             return true;
         }
-            return false;
+        return false;
     }
 
-    private void getHMISIndicatorsData(final String currentVersion) {
+    private void getHMISIndicatorsData(final String version) {
         Log.d(TAG, "*************** inside getHMISIndicatorsData() in HMISIndicatorUpdateManger() ***************");
 
         //API communication...
-        Call<ResponseBody> concepts = baseAPI.getHMISIndicatorsExport(currentVersion);
+        Call<ResponseBody> concepts = baseAPI.getHMISIndicatorsExport(version);
         concepts.enqueue(new Callback<ResponseBody>() {
             @SuppressLint("StaticFieldLeak")
             @Override
@@ -182,7 +181,7 @@ public class HMISIndicatorUpdateManager {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.e(TAG, "There was an error in downloading the HMIS Indicators file.");
+                Log.e(TAG, "There was an error in downloading the HMIS Indicators file.\n"+t.getMessage());
             }
         });
 
@@ -254,12 +253,15 @@ public class HMISIndicatorUpdateManager {
 
     private void populateData() {
         realm = Realm.getDefaultInstance();
+        String currentDate = null;
+        File file = null;
+
         Log.d(TAG, "Is the realm object under HMISIndicatorUpdateManager closed? " + realm.isClosed());
         try {
             realm.beginTransaction();
 
-            String currentDate = getCurrentDate().replace("-", "");
-            File file = new File(CONST.LOCAL_STORAGE, "HMISIndicators_" + currentDate + "_export.json");
+            currentDate = getCurrentDate().replace("-", "");
+            file = new File(CONST.LOCAL_STORAGE, "HMISIndicators_" + currentDate + "_export.json");
 
             Log.d(TAG, " ********** fileName after unzip : " + file.toString());
 
@@ -289,8 +291,11 @@ public class HMISIndicatorUpdateManager {
             SharedPref sharedPref = new SharedPref(context);
             sharedPref.setHMISIndicatorVersion(latestVersion);
 
-            if (realm != null)
+            deleteFile(new File (CONST.LOCAL_STORAGE,"HMISIndicators_"+currentDate+".zip"), file );
+
+            if (realm != null) {
                 realm.close();
+            }
         }
     }
 

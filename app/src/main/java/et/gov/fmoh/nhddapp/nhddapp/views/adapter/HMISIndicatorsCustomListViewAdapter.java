@@ -16,12 +16,12 @@ import java.util.Locale;
 
 import butterknife.BindView;
 import et.gov.fmoh.nhddapp.nhddapp.R;
-import et.gov.fmoh.nhddapp.nhddapp.helpers.ItemClickListenerHelper;
+import et.gov.fmoh.nhddapp.nhddapp.utils.ItemClickListenerHelper;
 import et.gov.fmoh.nhddapp.nhddapp.model.HMISIndicatorConcept;
 import et.gov.fmoh.nhddapp.nhddapp.views.DetailActivity;
 import et.gov.fmoh.nhddapp.nhddapp.views.fragments.Tab2Fragment;
 
-import static et.gov.fmoh.nhddapp.nhddapp.helpers.CONST.TAG;
+import static et.gov.fmoh.nhddapp.nhddapp.utils.CONST.TAG;
 
 public class HMISIndicatorsCustomListViewAdapter extends RecyclerView.Adapter<HMISIndicatorsCustomListViewAdapter.ViewHolder>{
     private ArrayList<HMISIndicatorConcept> concept;

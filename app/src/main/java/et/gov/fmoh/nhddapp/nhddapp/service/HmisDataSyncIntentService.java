@@ -5,8 +5,8 @@ import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import et.gov.fmoh.nhddapp.nhddapp.helpers.CONST;
-import et.gov.fmoh.nhddapp.nhddapp.helpers.HMISIndicatorUpdateManager;
+import et.gov.fmoh.nhddapp.nhddapp.utils.CONST;
+import et.gov.fmoh.nhddapp.nhddapp.utils.HMISIndicatorUpdateManager;
 
 public class HmisDataSyncIntentService extends IntentService {
     public HmisDataSyncIntentService() {

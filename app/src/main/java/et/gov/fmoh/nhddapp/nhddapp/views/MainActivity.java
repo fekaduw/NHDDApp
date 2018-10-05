@@ -21,9 +21,9 @@ import android.widget.EditText;
 
 import et.gov.fmoh.nhddapp.nhddapp.DrawFragment;
 import et.gov.fmoh.nhddapp.nhddapp.R;
-import et.gov.fmoh.nhddapp.nhddapp.helpers.DatabaseHelper;
-import et.gov.fmoh.nhddapp.nhddapp.helpers.CONST;
-import et.gov.fmoh.nhddapp.nhddapp.helpers.SharedPref;
+import et.gov.fmoh.nhddapp.nhddapp.utils.DatabaseHelper;
+import et.gov.fmoh.nhddapp.nhddapp.utils.CONST;
+import et.gov.fmoh.nhddapp.nhddapp.utils.SharedPref;
 import et.gov.fmoh.nhddapp.nhddapp.service.HmisDataSyncIntentService;
 import et.gov.fmoh.nhddapp.nhddapp.service.NcodDataSyncIntentService;
 import io.realm.Realm;
@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         databaseHelper = new DatabaseHelper();
+        //todo: remove after testing
+        Realm.init(this);
         realm = Realm.getDefaultInstance();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -60,8 +62,8 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        //check for data update
-        updateData();
+        //check data availability
+        isDataAvailable();
 
         //initialize the fragments
         setFragment(new DrawFragment());
@@ -125,9 +127,13 @@ public class MainActivity extends AppCompatActivity
             startActivity(updateIntent);
         }
         else if (id == R.id.nav_setting) {
-            Intent settingIntent = new Intent(this, SettingsActivity.class);
+            Intent settingIntent = new Intent(this, SettingActivity.class);
             startActivity(settingIntent);
 
+        }
+        else if (id == R.id.nav_help) {
+            Intent helpSupportIntent = new Intent(this, HelpSupportActivity.class);
+            startActivity(helpSupportIntent);
         }
         else if (id == R.id.nav_share) {
             Intent sendIntent = new Intent();
@@ -189,17 +195,17 @@ public class MainActivity extends AppCompatActivity
         drawerLayout.closeDrawer(GravityCompat.START);
     }
 
-    private void updateData(){
-        //updating the data
+    private void isDataAvailable(){
+        //check data availability
         if (!databaseHelper.isNCODDataAvailable(realm)) {
-            Log.d(CONST.TAG, "updateData() called from MainActivity. NCOD data not available; update will start...");
+            Log.d(CONST.TAG, "NCoD data not available; update will start...");
             Intent intent = new Intent(this, NcodDataSyncIntentService.class);
             intent.putExtra("version", sharedPref.getNCoDVersion());
             startService(intent);
         }
 
         if (!databaseHelper.isHMISDataAvailable(realm)) {
-            Log.d(CONST.TAG, "updateData() called from MainActivity. HMIS data not available. Updating to start...");
+            Log.d(CONST.TAG, "HMIS data not available. Updating to start...");
             Intent intent = new Intent(this, HmisDataSyncIntentService.class);
             intent.putExtra("version", sharedPref.getHMISIndicatorVersion());
             startService(intent);

@@ -1,9 +1,6 @@
 package et.gov.fmoh.nhddapp.nhddapp.views;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -16,7 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import et.gov.fmoh.nhddapp.nhddapp.R;
-import et.gov.fmoh.nhddapp.nhddapp.helpers.SharedPref;
+import et.gov.fmoh.nhddapp.nhddapp.utils.SharedPref;
 import et.gov.fmoh.nhddapp.nhddapp.model.NcodConcept;
 
 public class DetailActivity extends AppCompatActivity //implements NavigationView.OnNavigationItemSelectedListener

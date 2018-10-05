@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="?attr/backgroundColor"
+        card_view:cardPreventCornerOverlap="false"
         android:layout_marginTop="8dp">
 
         <LinearLayout
@@ -21,24 +23,23 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Enable dark mode"
+                android:text="Updating the data"
                 android:textStyle="bold"
                 android:textColor="?attr/textColor"/>
 
-           <Switch
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:id="@+id/nightMode_switch"
-               android:layout_marginTop="8dp"
-               android:textColor="?attr/textColor"
-               android:text="Night mode" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/pref_description_social_recommendations"
+                android:textColor="?attr/textColor"/>
+
         </LinearLayout>
     </android.support.v7.widget.CardView>
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="?attr/backgroundColor"
-        android:clipToPadding="false"
+        app:cardElevation="0dp"
         android:layout_marginTop="8dp">
 
         <LinearLayout
@@ -51,15 +52,11 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:textColor="?attr/textColor"
-                    android:text="NCoD Data Level"/>
-                <Spinner
-                    android:id="@+id/ncd_version"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="0dp"
-                    android:textColor="?attr/textColor"
-                    android:entries="@array/ncod_types"
-                    android:prompt="@string/ncod_types_prompt"/>
-                </LinearLayout>
+                    android:text="Searching the NCoD concepts"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/pref_description_social_recommendations"
+                android:textColor="?attr/textColor"/>                </LinearLayout>
             </android.support.v7.widget.CardView>
 </LinearLayout>

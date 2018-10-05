@@ -1,4 +1,4 @@
-package et.gov.fmoh.nhddapp.nhddapp.helpers;
+package et.gov.fmoh.nhddapp.nhddapp.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
