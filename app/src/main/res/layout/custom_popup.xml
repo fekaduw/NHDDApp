@@ -5,7 +5,7 @@
     android:layout_height="470dp"
     android:layout_gravity="center"
     android:padding="15dp"
-    android:background="@color/lightGray"
+    android:background="?attr/backgroundColor"
     >
 
     <ImageView
@@ -32,7 +32,7 @@
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#D3D3D3"></TableRow>
+        android:background="?attr/backgroundColor"></TableRow>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

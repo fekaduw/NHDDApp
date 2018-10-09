@@ -41,17 +41,20 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         sharedPref = new SharedPref(this);
 
-        /*setTheme (sharedPref.loadNightModeState()  ? R.style.DarkTheme : R.style.AppTheme);*/
+        setTheme (sharedPref.loadNightModeState()  ? R.style.DarkTheme : R.style.AppTheme);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        databaseHelper = new DatabaseHelper();
+ /*       databaseHelper = new DatabaseHelper();
+
         //todo: remove after testing
         Realm.init(this);
         realm = Realm.getDefaultInstance();
+*/
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -63,7 +66,7 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         //check data availability
-        isDataAvailable();
+        //todo:isDataAvailable();
 
         //initialize the fragments
         setFragment(new DrawFragment());
@@ -73,7 +76,7 @@ public class MainActivity extends AppCompatActivity
 
         dialog = new Dialog(MainActivity.this);
 
-        Log.d(CONST.TAG, "HMIS Version: " + sharedPref.getHMISIndicatorVersion() + "/nNCod version: " + sharedPref.getNCoDVersion());
+        //Log.d(CONST.TAG, "HMIS Version: " + sharedPref.getHMISIndicatorVersion() + "/nNCod version: " + sharedPref.getNCoDVersion());
     }
 
     @Override
@@ -127,7 +130,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(updateIntent);
         }
         else if (id == R.id.nav_setting) {
-            Intent settingIntent = new Intent(this, SettingActivity.class);
+            Intent settingIntent = new Intent(this, SettingsActivity.class);
             startActivity(settingIntent);
 
         }

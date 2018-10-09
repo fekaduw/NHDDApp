@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 public class SharedPref {
+
     SharedPreferences settingSharedPref;
 
     public SharedPref(Context context) {
@@ -40,6 +41,18 @@ public class SharedPref {
 
     public String getHMISIndicatorVersion(){
         String version = settingSharedPref.getString("HMISIndicatorVersion",null);
+        return version;
+    }
+
+    //ncodtype - mini, compact, and extended
+    public void setNcodType(String ncodType){
+        SharedPreferences.Editor editor = settingSharedPref.edit();
+        editor.putString("NcodType",ncodType);
+        editor.commit();
+    }
+
+    public String getNcodType(){
+        String version = settingSharedPref.getString("NcodType",null);
         return version;
     }
 }

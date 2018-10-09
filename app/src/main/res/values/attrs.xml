@@ -2,7 +2,10 @@
 <resources>
     <declare-styleable name="ds">
         <attr name="backgroundColor" format="color" />
+        <attr name="noInternetConnBackgroundColor" format="color" />
+        <attr name="noInternetConnTextColor" format="color" />
         <attr name="colorPrimary" format="color" />
+        <attr name="cardviewBackground" format="color" />
         <attr name="cardColor" format="color" />
         <attr name="mainTextColor" format="color" />
         <attr name="textColor" format="color" />

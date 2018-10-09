@@ -9,27 +9,44 @@ import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.os.Binder;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import et.gov.fmoh.nhddapp.nhddapp.R;
 import et.gov.fmoh.nhddapp.nhddapp.utils.CONST;
+import et.gov.fmoh.nhddapp.nhddapp.utils.DatabaseHelper;
 import et.gov.fmoh.nhddapp.nhddapp.utils.HMISIndicatorUpdateManager;
 import et.gov.fmoh.nhddapp.nhddapp.utils.NCoDUpdateManager;
+import et.gov.fmoh.nhddapp.nhddapp.utils.NetworkUtils;
 import et.gov.fmoh.nhddapp.nhddapp.utils.SharedPref;
 import et.gov.fmoh.nhddapp.nhddapp.service.NcodDataSyncIntentService;
 
-public class UpdateActivity extends Activity {
-    //views
+public class UpdateActivity extends AppCompatActivity {
+    @BindView(R.id.update_progressBar)
     ProgressBar progressBar;
+
+    @BindView(R.id.update_status)
     TextView updateTextView;
+
+    @BindView(R.id.btn_update)
+    Button btnUpdate;
+
+    @BindView(R.id.internet_status)
+    TextView internetStatusTextView;
 
     //shared preference
     SharedPref sharedPref;
@@ -38,29 +55,58 @@ public class UpdateActivity extends Activity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        sharedPref = new SharedPref(this);
+
+        setTheme(sharedPref.loadNightModeState() ? R.style.DarkTheme : R.style.AppTheme);
+
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_update);
 
-        sharedPref = new SharedPref(this);
 
-        progressBar = findViewById(R.id.update_progressBar);
-        updateTextView = findViewById(R.id.update_status);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        // Get a support ActionBar corresponding to this toolbar
+        ActionBar ab = getSupportActionBar();
 
-        //context = getApplicationContext();
-        checkForUpdates();
+        // Enable the Up button
+        assert ab != null;
+        ab.setDisplayHomeAsUpEnabled(true);
 
-        Toast.makeText(this, sharedPref.getNCoDVersion(), Toast.LENGTH_LONG).show();
+        ButterKnife.bind(this);
+
+        if (isInternetAvailable()) {
+            btnUpdateSetup();
+        }
+    }
+
+    private boolean isInternetAvailable() {
+        if (NetworkUtils.isInternetAvailable(this)) {
+            internetStatusTextView.setVisibility(View.GONE);
+            return true;
+        } else {
+            internetStatusTextView.setVisibility(View.VISIBLE);
+            return false;
+        }
+    }
+
+    private void btnUpdateSetup() {
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isInternetAvailable()) {
+                    Toast.makeText(getApplicationContext(), "Update about to begin...", Toast.LENGTH_SHORT).show();
+                    //checkForUpdates();
+                }
+            }
+        });
     }
 
     @SuppressLint("StaticFieldLeak")
     private void checkForUpdates() {
 
-        //check Internet connection
-        ConnectivityManager cm = (ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         //Internet connection available
-        if(activeNetwork != null && activeNetwork.isConnectedOrConnecting()) {
+        if (isInternetAvailable()) {
             //check permission to access local storage
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, CONST.MY_PERMISSIONS_REQUEST);
@@ -85,16 +131,16 @@ public class UpdateActivity extends Activity {
 
             startService(intent);
 
-/*
             updateNCoD();
 
             updateHMISIndicator();
 
+/*
+        todo:
             DatabaseHelper activityHelper = new DatabaseHelper();
             activityHelper.restartActivity();
 */
-        }else
-        {
+        } else {
             Toast.makeText(this, "No Internet connection available to download the latest data.", Toast.LENGTH_LONG).show();
         }
     }

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="?attr/backgroundColor"
     >
+
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,7 +24,7 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="?attr/cardColor"
+        app:cardBackgroundColor="?attr/backgroundColor"
         android:layout_marginTop="8dp">
 
         <LinearLayout
@@ -66,12 +67,12 @@
                     android:textColor="?attr/tintColor"
                     android:paddingBottom="10dp"
                     android:text="NCoD Data Level"/>
-                <Spinner
-                    android:id="@+id/ncod_type"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:entries="@array/ncod_types"
-                    android:prompt="@string/ncod_types_prompt"/>
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
+            <Spinner
+                android:id="@+id/ncod_type"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:entries="@array/ncod_types"
+                android:prompt="@string/ncod_types_prompt"/>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
 </LinearLayout>
