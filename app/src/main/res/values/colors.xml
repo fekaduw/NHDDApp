@@ -8,7 +8,9 @@
     <color name="grey">#9e9e9e</color>
     <color name="light_blue">#3eb2cb</color>
     <color name="lightenGrey3">#eeeeee</color>
-    <color name="listview_maintext_color">#484232</color>
+    <color name="listview_maintext_color">#aeaeae</color>
     <color name="cardviewDarkBackground">#FF424242</color>
     <color name="cardviewLightBackground">#FFFFFFFF</color>
+    <color name="nightModeDividerLineColor">#3d434a</color>
+    <color name="dividerLineColor">#e8e8e8</color>
 </resources>

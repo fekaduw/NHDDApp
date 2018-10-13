@@ -19,8 +19,13 @@ import android.widget.Button;
 import android.widget.EditText;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import et.gov.fmoh.nhddapp.nhddapp.DrawFragment;
 import et.gov.fmoh.nhddapp.nhddapp.R;
+import et.gov.fmoh.nhddapp.nhddapp.model.NCoD;
+import et.gov.fmoh.nhddapp.nhddapp.model.NcodConcept;
 import et.gov.fmoh.nhddapp.nhddapp.utils.DatabaseHelper;
 import et.gov.fmoh.nhddapp.nhddapp.utils.CONST;
 import et.gov.fmoh.nhddapp.nhddapp.utils.SharedPref;
@@ -49,12 +54,11 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
- /*       databaseHelper = new DatabaseHelper();
+        databaseHelper = new DatabaseHelper();
 
         //todo: remove after testing
         Realm.init(this);
         realm = Realm.getDefaultInstance();
-*/
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -66,7 +70,7 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         //check data availability
-        //todo:isDataAvailable();
+        //isDataAvailable();
 
         //initialize the fragments
         setFragment(new DrawFragment());
@@ -199,7 +203,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void isDataAvailable(){
-        //check data availability
+        /*//check data availability
         if (!databaseHelper.isNCODDataAvailable(realm)) {
             Log.d(CONST.TAG, "NCoD data not available; update will start...");
             Intent intent = new Intent(this, NcodDataSyncIntentService.class);
@@ -212,6 +216,6 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, HmisDataSyncIntentService.class);
             intent.putExtra("version", sharedPref.getHMISIndicatorVersion());
             startService(intent);
-        }
+        }*/
     }
 }

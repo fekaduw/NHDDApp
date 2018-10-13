@@ -23,7 +23,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static et.gov.fmoh.nhddapp.nhddapp.utils.DataHelper.deleteFile;
-import static et.gov.fmoh.nhddapp.nhddapp.utils.DatabaseHelper.getCurrentDate;
 import static et.gov.fmoh.nhddapp.nhddapp.utils.CONST.TAG;
 
 public class NCoDUpdateManager {
@@ -184,7 +183,7 @@ public class NCoDUpdateManager {
         try {
             realm.beginTransaction();
 
-            currentDate = getCurrentDate().replace("-", "");
+            currentDate = DateHelper.getCurrentDate().replace("-", "");
             file = new File(CONST.LOCAL_STORAGE, "NCoD_" + currentDate + "_export.json");
 
             Log.d(TAG, " ********** fileName after unzip : " + file.toString());
@@ -215,7 +214,7 @@ public class NCoDUpdateManager {
             SharedPref sharedPref = new SharedPref(context);
             sharedPref.setNCoDVersion(latestVersion);
 
-            deleteFile(new File (CONST.LOCAL_STORAGE,"NCoD_"+currentDate+".zip"), file );
+          //todo:  deleteFile(new File (CONST.LOCAL_STORAGE,"NCoD_"+currentDate+".zip"), file );
 
             if (realm != null) {
                 realm.close();

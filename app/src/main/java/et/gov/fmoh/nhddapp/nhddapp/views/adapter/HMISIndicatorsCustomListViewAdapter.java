@@ -1,30 +1,7 @@
 package et.gov.fmoh.nhddapp.nhddapp.views.adapter;
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.Locale;
-
-import butterknife.BindView;
-import et.gov.fmoh.nhddapp.nhddapp.R;
-import et.gov.fmoh.nhddapp.nhddapp.utils.ItemClickListenerHelper;
-import et.gov.fmoh.nhddapp.nhddapp.model.HMISIndicatorConcept;
-import et.gov.fmoh.nhddapp.nhddapp.views.DetailActivity;
-import et.gov.fmoh.nhddapp.nhddapp.views.fragments.Tab2Fragment;
-
-import static et.gov.fmoh.nhddapp.nhddapp.utils.CONST.TAG;
-
-public class HMISIndicatorsCustomListViewAdapter extends RecyclerView.Adapter<HMISIndicatorsCustomListViewAdapter.ViewHolder>{
-    private ArrayList<HMISIndicatorConcept> concept;
+public class HMISIndicatorsCustomListViewAdapter {//extends RecyclerView.Adapter<HMISIndicatorsCustomListViewAdapter.ViewHolder>{
+    /*private ArrayList<HMISIndicatorConcept> concept;
     private ArrayList<HMISIndicatorConcept> conceptFiltered;
     private Integer favoriteImgIcon;
 
@@ -59,31 +36,30 @@ public class HMISIndicatorsCustomListViewAdapter extends RecyclerView.Adapter<HM
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        final HMISIndicatorConcept HMISIndicatorConcept = concept.get(position);
+        final HMISIndicatorConcept hmisIndicatorConcept = concept.get(position);
 
-        holder.textViewName.setText (HMISIndicatorConcept.getDisplay_name());
-        holder.textViewDesc.setText (HMISIndicatorConcept.getConcept_class());
+        holder.textViewName.setText (hmisIndicatorConcept.getDisplay_name());
+        holder.textViewDesc.setText (hmisIndicatorConcept.getConcept_class());
         //String version = concept.get(position).getIs_latest_version()=="true" ? "Latest version": "Update required";
         //viewHolder.textViewLastUpdated.setText (version);
-        holder.iconConcept.setText(HMISIndicatorConcept.getDisplay_name().substring(0,1));
+        holder.iconConcept.setText(hmisIndicatorConcept.getDisplay_name().substring(0,1));
         holder.favoriteImgViewIcon.setImageResource(favoriteImgIcon);
         holder.favoriteImgViewIcon.setId(position);
-
-        Log.d("CV_VALUE", "Display name: " + HMISIndicatorConcept.getDisplay_name());
+        Log.d("CV_VALUE", "Display name: " + hmisIndicatorConcept.getDisplay_name());
 
         holder.setItemClickListener(new ItemClickListenerHelper() {
             @Override
             public void onItemClick(int position) {
                 //Toast.makeText(context, concept.get(position).getDisplay_name(),Toast.LENGTH_LONG).show();
-                Log.v(TAG, HMISIndicatorConcept.getDisplay_name() + " item tapped");
+                Log.d(TAG, hmisIndicatorConcept.getDisplay_name() + " item tapped");
 
-                Intent intent = new Intent(context, DetailActivity.class);
+                Intent intent = new Intent(context, NcodDetailActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putString("display_name", HMISIndicatorConcept.getDisplay_name());
+                bundle.putString("display_name", hmisIndicatorConcept.getDisplay_name());
              //todo   bundle.putString("description", HMISIndicatorConcept.getDescriptions());
-                bundle.putString("category", HMISIndicatorConcept.getConcept_class());
-                bundle.putString("version_created_on", HMISIndicatorConcept.getVersion_created_on());
-                bundle.putBoolean("is_version_latest", HMISIndicatorConcept.is_latest_version());
+                bundle.putString("category", hmisIndicatorConcept.getConcept_class());
+                bundle.putString("version_created_on", hmisIndicatorConcept.getVersion_created_on());
+                bundle.putBoolean("is_version_latest", hmisIndicatorConcept.is_latest_version());
 
                 //todo: add a title for the detail activity bundle.putString("activity_title", );
 
@@ -101,9 +77,9 @@ public class HMISIndicatorsCustomListViewAdapter extends RecyclerView.Adapter<HM
         return concept!=null? concept.size() : 0;
     }
 
-    /*
+    *//*
         This method handles the text search
-     */
+     *//*
     public void filter(String charText) {
         charText = charText.toLowerCase(Locale.getDefault());
         Tab2Fragment.concepts.clear();
@@ -157,5 +133,5 @@ public class HMISIndicatorsCustomListViewAdapter extends RecyclerView.Adapter<HM
         public void onClick(View v) {
             this.itemClickListenerHelper.onItemClick(this.getLayoutPosition());
         }
-    }
+    }*/
 }

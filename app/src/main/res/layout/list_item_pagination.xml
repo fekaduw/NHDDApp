@@ -19,14 +19,13 @@
             android:id="@+id/imageView"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/ic_ncod" />-->
+            android:src="@drawable/ic_ncod"
+            android:background="@drawable/circle_concept_icon_blue"/>-->
 
-        <TextView
+        <ImageView
             android:id="@+id/concept_icon"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:background="@drawable/circle_concept_icon_blue"
-            android:text="C"
             android:layout_marginTop="0dp"
             android:gravity="center"
             android:textColor="?attr/textColor"
@@ -43,15 +42,15 @@
             android:layout_toEndOf="@+id/concept_icon"
             android:layout_toRightOf="@+id/concept_icon"
             android:background="?attr/backgroundColor"
+
             android:fontFamily="roboto"
             android:text="Main text goes here..."
 
-            android:textColor="?attr/mainTextColor"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:textColor="?attr/textColor"
+            android:textSize="14sp"
             app:fontFamily="@font/hind" />
 
-        <ImageView
+        <!--<ImageView
             android:id="@+id/favorite_imageview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -62,7 +61,7 @@
             android:layout_alignParentTop="true"
             android:contentDescription="@string/nav_favorite"
             android:padding="0dp"
-            android:src="@mipmap/ic_favorite_" />
+            android:src="@mipmap/ic_favorite_" />-->
 
         <TextView
             android:id="@+id/concept_desc_textview"
@@ -71,13 +70,12 @@
             android:layout_below="@+id/concept_name_textview"
             android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_toEndOf="@+id/concept_icon"
             android:layout_toRightOf="@+id/concept_icon"
-
             android:text="@string/nav_header_desc"
-            android:textColor="?attr/textColor"
-            android:textSize="14sp"
+            android:textColor="?attr/mainTextColor"
+            android:textSize="12sp"
             app:fontFamily="sans-serif" />
 
         <!--<ImageView

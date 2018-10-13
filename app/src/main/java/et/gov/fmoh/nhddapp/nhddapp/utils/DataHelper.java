@@ -22,7 +22,8 @@ import io.realm.RealmList;
 import io.realm.RealmResults;
 import okhttp3.ResponseBody;
 
-import static et.gov.fmoh.nhddapp.nhddapp.utils.DatabaseHelper.getCurrentDate;
+import static et.gov.fmoh.nhddapp.nhddapp.utils.DateHelper.getCurrentDate;
+
 
 public class DataHelper {
 

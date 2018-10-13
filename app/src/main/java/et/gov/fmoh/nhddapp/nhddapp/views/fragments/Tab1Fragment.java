@@ -1,7 +1,9 @@
 package et.gov.fmoh.nhddapp.nhddapp.views.fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Binder;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,44 +16,70 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
+import com.amulyakhare.textdrawable.TextDrawable;
 
+import java.util.ArrayList;
+import java.util.Locale;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import et.gov.fmoh.nhddapp.nhddapp.model.NcodConcept;
 import et.gov.fmoh.nhddapp.nhddapp.model.NcodExtras;
 import et.gov.fmoh.nhddapp.nhddapp.utils.CONST;
 import et.gov.fmoh.nhddapp.nhddapp.utils.DatabaseHelper;
 import et.gov.fmoh.nhddapp.nhddapp.service.NcodDataSyncIntentService;
+import et.gov.fmoh.nhddapp.nhddapp.utils.GenerateColor;
+import et.gov.fmoh.nhddapp.nhddapp.utils.ItemClickListenerHelper;
+import et.gov.fmoh.nhddapp.nhddapp.views.ConceptListActivity;
 import et.gov.fmoh.nhddapp.nhddapp.views.adapter.CategoryListViewAdapter;
 import et.gov.fmoh.nhddapp.nhddapp.R;
+import et.gov.fmoh.nhddapp.nhddapp.views.adapter.CustomListViewAdapter;
+import et.gov.fmoh.nhddapp.nhddapp.views.adapter.ViewHolder;
 import io.realm.Realm;
 import io.realm.RealmChangeListener;
 
+import static et.gov.fmoh.nhddapp.nhddapp.utils.CONST.CATEGORY_NCOD;
 import static et.gov.fmoh.nhddapp.nhddapp.utils.CONST.TAG;
 
 public class Tab1Fragment extends Fragment implements SearchView.OnQueryTextListener{
 
     //views
-    private RecyclerView recyclerView;
-    private ProgressBar progressBar;
-    private SwipeRefreshLayout swipeRefreshLayout;
-    private TextView textViewNotFound;
-    private SearchView searchView;
+    @BindView(R.id.recView)
+    RecyclerView recyclerView;
+    // GridView recyclerView;
+
+    @BindView(R.id.progress)
+    ProgressBar progressBar;
+
+    //private SwipeRefreshLayout swipeRefreshLayout;
+
+    @BindView(R.id.textViewNotfound)
+    TextView textViewNotFound;
+
+    @BindView(R.id.search_view)
+    SearchView searchView;
 
     //set the favorite icon for the recycler view
     private Integer imageViewFavorite;
 
     //custom adapter
-    private CategoryListViewAdapter categoryListViewAdapter;
+    private CategoryListViewAdapter customListViewAdapter;
 
     private Realm realm;
     public static ArrayList<NcodExtras> concepts =null;
     private Context context;
 
     private DatabaseHelper databaseHelper;
+
+    private ArrayList<Integer> color;
+    ArrayList<NcodExtras> conceptFiltered;
+
 
     public Tab1Fragment() {
         databaseHelper = new DatabaseHelper();
@@ -60,11 +88,18 @@ public class Tab1Fragment extends Fragment implements SearchView.OnQueryTextList
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
 
         context = getActivity();
         setHasOptionsMenu(true);
+
+        color = new ArrayList<>();
+
+        /*conceptFiltered = new ArrayList<>();
+
+        if (concepts != null) {
+            this.conceptFiltered.addAll(concepts);
+        }*/
     }
 
     @Override
@@ -76,7 +111,7 @@ public class Tab1Fragment extends Fragment implements SearchView.OnQueryTextList
     @Override
     public boolean onQueryTextChange(String newText) {
         String text = newText;
-        categoryListViewAdapter.filter(text);
+        customListViewAdapter.filter(text);
         return false;
     }
 
@@ -85,7 +120,7 @@ public class Tab1Fragment extends Fragment implements SearchView.OnQueryTextList
         public void onChange(Object o) {
             Log.d(TAG, "OnChange() method in change listener called");
 
-            concepts = databaseHelper.getNCoDCategories(realm); //databaseHelper.getNCoDConcepts(realm);
+            concepts = databaseHelper.getNCoDCategories(realm);
 
             try{
             if (concepts!=null) {
@@ -118,6 +153,8 @@ public class Tab1Fragment extends Fragment implements SearchView.OnQueryTextList
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        ButterKnife.bind((Activity) context);
+
         View view = inflater.inflate(R.layout.tab_fragment_layout,container,false);
 
         setupViews(view);
@@ -154,8 +191,71 @@ public class Tab1Fragment extends Fragment implements SearchView.OnQueryTextList
 
     //initializes the custom adapter
     private void initCustomAdapter() {
-        categoryListViewAdapter = new CategoryListViewAdapter(getActivity(), concepts, imageViewFavorite);
-        recyclerView.setAdapter(categoryListViewAdapter);
+        //customListViewAdapter = new CustomListViewAdapter(getActivity(), concepts, imageViewFavorite);
+        customListViewAdapter = new CategoryListViewAdapter<NcodExtras>(getActivity(), concepts, new ItemClickListenerHelper() {
+            @Override
+            public void onItemClick(int position) {
+                Intent i = new Intent(context, ConceptListActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("category", CATEGORY_NCOD);
+                bundle.putString("categoryName", concepts.get(position).getICD10Chapter());
+                bundle.putInt("color", color.get(position));
+                i.putExtras(bundle);
+                startActivity(i);
+            }
+        }){
+
+
+            @Override
+            public void onBindData(ViewHolder holder1, NcodExtras concept) {
+                Log.d(TAG, "Current concept name: " + concept.getICD10Chapter());
+                if(concept!=null) {
+                    ViewHolder holder = holder1;
+                    holder.textViewName.setText(concept.getICD10Chapter());
+                    holder.textViewDesc.setText(concept.getICD10Block());
+
+                    holder.iconConcept.setImageDrawable(getColor(concept));
+
+                    showProgressBar(false);
+                }
+            }
+
+            @Override
+            public void filter(String charText) {
+                ArrayList<String> _concept;
+
+
+                charText = charText.toLowerCase(Locale.getDefault());
+                concepts.clear();
+
+                if (charText.length() == 0) {
+                    concepts.addAll(conceptFiltered);
+                } else {
+                    for (NcodExtras row : conceptFiltered) {
+
+                        Log.d(TAG, row.getICD10Chapter());
+
+                        if (row.getICD10Chapter().toLowerCase(Locale.getDefault()).contains(charText)) {
+                            Tab1Fragment.concepts.add(row);
+                            Log.d(TAG, "Filtered row added.");
+                        }
+                    }
+                }
+                notifyDataSetChanged();
+            }
+        };
+
+        recyclerView.setAdapter(customListViewAdapter);
+        showRecyclerView(true);
+
+    }
+
+    private TextDrawable getColor(NcodExtras concept){
+        // generate random color
+        GenerateColor<NcodExtras> generateColor = new GenerateColor<>();
+        int c = generateColor.getColor(concept);
+        color.add(c);
+        return generateColor.getTextDrawable(concept.getICD10Chapter(), c);
     }
 
     // setup different views on the fragment layout
@@ -163,14 +263,14 @@ public class Tab1Fragment extends Fragment implements SearchView.OnQueryTextList
         recyclerView = view.findViewById(R.id.recView);
 
         progressBar = view.findViewById(R.id.progress);
-        //swipeRefreshLayout = view.findViewById(R.id.refreshTab1ListView);
-        /*swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+   /*     //swipeRefreshLayout = view.findViewById(R.id.refreshTab1ListView);
+        *//*swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 loadData();
             }
-        });*/
-
+        });*//*
+         */
         textViewNotFound = view.findViewById(R.id.textViewNotfound);
         textViewNotFound.setText("Loading...");
 
@@ -179,7 +279,6 @@ public class Tab1Fragment extends Fragment implements SearchView.OnQueryTextList
 
         //init the favorite icon
         imageViewFavorite = R.mipmap.ic_favorite_;
-
 
         initCustomAdapterRecycleView();
 
@@ -206,11 +305,11 @@ public class Tab1Fragment extends Fragment implements SearchView.OnQueryTextList
 
         Toast.makeText(context,"Starting updating the data", Toast.LENGTH_LONG).show();
 
-        //updating the data
+        /*//updating the data
         if (!databaseHelper.isNCODDataAvailable(realm)) {
             Intent intent = new Intent(context, NcodDataSyncIntentService.class);
             context.startService(intent);
-        }
+        }*/
      }
 
      //set up the custom adapter and recycleview

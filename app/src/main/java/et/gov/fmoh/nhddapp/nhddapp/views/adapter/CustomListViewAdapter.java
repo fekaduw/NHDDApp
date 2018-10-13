@@ -1,29 +1,8 @@
 package et.gov.fmoh.nhddapp.nhddapp.views.adapter;
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-import java.util.ArrayList;
-import java.util.Locale;
+public class CustomListViewAdapter{// extends RecyclerView.Adapter<CustomListViewAdapter.ViewHolder> {
 
-import butterknife.BindView;
-import et.gov.fmoh.nhddapp.nhddapp.R;
-import et.gov.fmoh.nhddapp.nhddapp.utils.ItemClickListenerHelper;
-import et.gov.fmoh.nhddapp.nhddapp.model.NcodConcept;
-import et.gov.fmoh.nhddapp.nhddapp.views.DetailActivity;
-import et.gov.fmoh.nhddapp.nhddapp.views.fragments.Tab1Fragment;
-import static et.gov.fmoh.nhddapp.nhddapp.utils.CONST.TAG;
-
-public class CustomListViewAdapter extends RecyclerView.Adapter<CustomListViewAdapter.ViewHolder> {
-
-    private ArrayList<NcodConcept> concept;
+    /*private ArrayList<NcodConcept> concept;
     private ArrayList<NcodConcept> conceptFiltered;
     private Integer favoriteImgIcon;
 
@@ -39,9 +18,9 @@ public class CustomListViewAdapter extends RecyclerView.Adapter<CustomListViewAd
         this.conceptFiltered = new ArrayList<NcodConcept>();
 
         //todo restore it
-        /*if (Tab1Fragment.concepts != null) {
+        if (Tab1Fragment.concepts != null) {
             this.conceptFiltered.addAll(Tab1Fragment.concepts);
-        }*/
+        }
     }
 
     public void update(ArrayList<NcodConcept> concept){
@@ -76,10 +55,10 @@ public class CustomListViewAdapter extends RecyclerView.Adapter<CustomListViewAd
 
                 Log.v(TAG, ncodConcept.getDisplay_name() + " is tapped.");
 
-                Intent intent = new Intent(context, DetailActivity.class);
+                Intent intent = new Intent(context, NcodDetailActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("display_name", ncodConcept.getDisplay_name());
-                bundle.putString("description", ncodConcept.getDescriptions());
+               // bundle.putString("description", ncodConcept.getDescriptions());
                 bundle.putString("category", ncodConcept.getConcept_class());
                 bundle.putString("version_created_on", ncodConcept.getVersion_created_on());
                 bundle.putBoolean("is_version_latest", ncodConcept.is_latest_version());
@@ -100,11 +79,11 @@ public class CustomListViewAdapter extends RecyclerView.Adapter<CustomListViewAd
         return concept!=null? concept.size() : 0;
     }
 
-    /*
+    *//*
         This method handles the text search
-     */
+     *//*
     //todo restore
-    /*public void filter(String charText) {
+    public void filter(String charText) {
         charText = charText.toLowerCase(Locale.getDefault());
         Tab1Fragment.concepts.clear();
 
@@ -122,7 +101,7 @@ public class CustomListViewAdapter extends RecyclerView.Adapter<CustomListViewAd
             }
         }
         notifyDataSetChanged();
-    }*/
+    }
 
     final class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         @BindView(R.id.concept_name_textview)
@@ -153,5 +132,5 @@ public class CustomListViewAdapter extends RecyclerView.Adapter<CustomListViewAd
         public void onClick(View v) {
             this.itemClickListenerHelper.onItemClick(this.getLayoutPosition());
         }
-    }
+    }*/
 }

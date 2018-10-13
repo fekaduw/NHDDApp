@@ -10,6 +10,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,17 +20,27 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amulyakhare.textdrawable.TextDrawable;
+
 import java.util.ArrayList;
 
+import et.gov.fmoh.nhddapp.nhddapp.model.HMISIndicatorExtra;
+import et.gov.fmoh.nhddapp.nhddapp.model.NcodConcept;
+import et.gov.fmoh.nhddapp.nhddapp.model.NcodExtras;
 import et.gov.fmoh.nhddapp.nhddapp.utils.CONST;
 import et.gov.fmoh.nhddapp.nhddapp.utils.DatabaseHelper;
 import et.gov.fmoh.nhddapp.nhddapp.model.HMISIndicatorConcept;
 import et.gov.fmoh.nhddapp.nhddapp.service.HmisDataSyncIntentService;
 import et.gov.fmoh.nhddapp.nhddapp.R;
-import et.gov.fmoh.nhddapp.nhddapp.views.adapter.HMISIndicatorsCustomListViewAdapter;
+import et.gov.fmoh.nhddapp.nhddapp.utils.GenerateColor;
+import et.gov.fmoh.nhddapp.nhddapp.utils.ItemClickListenerHelper;
+import et.gov.fmoh.nhddapp.nhddapp.views.ConceptListActivity;
+import et.gov.fmoh.nhddapp.nhddapp.views.adapter.CategoryListViewAdapter;
+import et.gov.fmoh.nhddapp.nhddapp.views.adapter.ViewHolder;
 import io.realm.Realm;
 import io.realm.RealmChangeListener;
 
+import static et.gov.fmoh.nhddapp.nhddapp.utils.CONST.CATEGORY_HMIS_INDICATOR;
 import static et.gov.fmoh.nhddapp.nhddapp.utils.CONST.TAG;
 
 
@@ -37,7 +48,7 @@ public class Tab2Fragment extends Fragment implements SearchView.OnQueryTextList
     //views
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
-    private SwipeRefreshLayout swipeRefreshLayout;
+    //private SwipeRefreshLayout swipeRefreshLayout;
     private TextView textViewNotFound;
     private SearchView searchView;
 
@@ -45,13 +56,15 @@ public class Tab2Fragment extends Fragment implements SearchView.OnQueryTextList
     private Integer imageViewFavorite;
 
     //custom adapter
-    private HMISIndicatorsCustomListViewAdapter customListViewAdapter;
+    private CategoryListViewAdapter customListViewAdapter;
 
     private Realm realm;
-    public static ArrayList<HMISIndicatorConcept> concepts =null;
+    public static ArrayList<HMISIndicatorExtra> concepts =null;
     private Context context;
 
     private DatabaseHelper databaseHelper;
+
+    private ArrayList<Integer> color;
 
     public Tab2Fragment() {
         databaseHelper = new DatabaseHelper();
@@ -65,6 +78,8 @@ public class Tab2Fragment extends Fragment implements SearchView.OnQueryTextList
 
         context = getActivity();
         setHasOptionsMenu(true);
+
+        color = new ArrayList<>();
     }
 
     @Override
@@ -85,7 +100,7 @@ public class Tab2Fragment extends Fragment implements SearchView.OnQueryTextList
         public void onChange(Object o) {
             Log.d(TAG, "OnChange() method in change listener called");
 
-            concepts = databaseHelper.getHMISIndicatorConcepts(realm);
+            concepts = databaseHelper.getHMISCategories(realm);
 
             try{
                 if (concepts!=null) {
@@ -124,7 +139,7 @@ public class Tab2Fragment extends Fragment implements SearchView.OnQueryTextList
 
         Log.d(TAG, "Inside onCreateView() Tab1Fragment");
 
-        concepts = databaseHelper.getHMISIndicatorConcepts(realm);
+        concepts = databaseHelper.getHMISCategories(realm);
 
         if (concepts!=null) {
 
@@ -154,8 +169,82 @@ public class Tab2Fragment extends Fragment implements SearchView.OnQueryTextList
 
     //initializes the custom adapter
     private void initCustomAdapter() {
-        customListViewAdapter = new HMISIndicatorsCustomListViewAdapter(getActivity(), concepts, imageViewFavorite);
+        /*customListViewAdapter = new HMISIndicatorsCustomListViewAdapter(getActivity(), concepts, imageViewFavorite);
+        recyclerView.setAdapter(customListViewAdapter);*/
+
+        customListViewAdapter = new CategoryListViewAdapter<HMISIndicatorExtra>(getActivity(), concepts, new ItemClickListenerHelper() {
+            @Override
+            public void onItemClick(int position) {
+                Intent i = new Intent(context, ConceptListActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("category", CATEGORY_HMIS_INDICATOR);
+                bundle.putString("categoryName", concepts.get(position).getHmisCategory1());
+                bundle.putInt("color", color.get(position));
+
+                bundle.putString("hmisCategory1", concepts.get(position).getHmisCategory1());
+                bundle.putString("hmisCategory2", !TextUtils.isEmpty(concepts.get(position).getHmisCategory2())?concepts.get(position).getHmisCategory2():"NA");
+                bundle.putString("hmisCategory3", !TextUtils.isEmpty(concepts.get(position).getHmisCategory3())?concepts.get(position).getHmisCategory3():"NA");
+                bundle.putString("hmisCategory4", !TextUtils.isEmpty(concepts.get(position).getHmisCategory4())?concepts.get(position).getHmisCategory4():"NA");
+
+                bundle.putString("applicableReportingUnits", concepts.get(position).getApplicableReportingUnits());
+                bundle.putString("numerator", concepts.get(position).getNumerator());
+                bundle.putString("denominator", !TextUtils.isEmpty(concepts.get(position).getDenominator())?concepts.get(position).getDenominator():"NA");
+                bundle.putString("disaggregation", concepts.get(position).getDisaggregation());
+                bundle.putString("reportingFrequency", concepts.get(position).getReportingFrequency());
+                bundle.putString("multiplier", !TextUtils.isEmpty(concepts.get(position).getMultiplier())?concepts.get(position).getMultiplier():"NA");
+                bundle.putString("primarySources", concepts.get(position).getPrimarySources());
+
+                i.putExtras(bundle);
+                startActivity(i);
+            }
+        }){
+            @Override
+            public void onBindData(ViewHolder holder1, HMISIndicatorExtra concept) {
+                if (concept != null) {
+                    Log.d(TAG, "Current concept name: " + concept.getHmisCategory2());
+                    ViewHolder holder = holder1;
+                    holder.textViewName.setText(concept.getHmisCategory1());
+                    holder.textViewDesc.setText(concept.getHmisCategory2());
+
+                   holder.iconConcept.setImageDrawable(getColor(concept));
+                }
+            }
+
+            @Override
+            public void filter(String charText) {
+                /*ArrayList<NcodConcept> _concept;
+                ArrayList<NcodConcept> conceptFiltered;
+
+                charText = charText.toLowerCase(Locale.getDefault());
+                concepts.clear();
+
+                if (charText.length() == 0) {
+                    concepts.addAll(conceptFiltered);
+                } else {
+                    for (NcodConcept row : conceptFiltered) {
+
+                        Log.d(TAG, row.getDisplay_name());
+
+                        if (row.getDisplay_name().toLowerCase(Locale.getDefault()).contains(charText)) {
+                            Tab1Fragment.concepts.add(row);
+                            Log.d(TAG, "Filtered row added.");
+                        }
+                    }
+                }
+                notifyDataSetChanged();*/
+            }
+        };
         recyclerView.setAdapter(customListViewAdapter);
+        textViewNotFound.setVisibility(View.INVISIBLE);
+        progressBar.setVisibility(View.GONE);
+    }
+
+    private TextDrawable getColor(HMISIndicatorExtra concept){
+        // generate random color
+        GenerateColor<HMISIndicatorExtra> generateColor = new GenerateColor<>();
+        int c = generateColor.getColor(concept);
+        color.add(c);
+        return generateColor.getTextDrawable(concept.getHmisCategory1(), c);
     }
 
     // setup different views on the fragment layout

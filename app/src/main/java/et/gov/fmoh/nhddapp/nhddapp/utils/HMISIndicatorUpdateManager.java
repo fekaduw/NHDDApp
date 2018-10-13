@@ -24,7 +24,6 @@ import retrofit2.Response;
 
 import static et.gov.fmoh.nhddapp.nhddapp.utils.CONST.TAG;
 import static et.gov.fmoh.nhddapp.nhddapp.utils.DataHelper.deleteFile;
-import static et.gov.fmoh.nhddapp.nhddapp.utils.DatabaseHelper.getCurrentDate;
 
 public class HMISIndicatorUpdateManager {
     private static BaseAPI baseAPI = BaseAPI.Factory.create();
@@ -260,7 +259,7 @@ public class HMISIndicatorUpdateManager {
         try {
             realm.beginTransaction();
 
-            currentDate = getCurrentDate().replace("-", "");
+            currentDate = DateHelper.getCurrentDate().replace("-", "");
             file = new File(CONST.LOCAL_STORAGE, "HMISIndicators_" + currentDate + "_export.json");
 
             Log.d(TAG, " ********** fileName after unzip : " + file.toString());

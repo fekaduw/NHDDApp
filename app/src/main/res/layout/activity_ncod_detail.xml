@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.emilsjolander.components.StickyScrollViewItems.StickyScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.NcodDetailActivity"
+    android:background="?attr/backgroundColor"
+    >
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:tag="sticky">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@drawable/appbar_gradient_background"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:id="@+id/detail_header"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/appbar_gradient_background"
+        android:gravity="center"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/concept_icon"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+
+            android:gravity="center"
+            android:textColor="?attr/textColor"
+            android:textSize="30sp"
+            app:fontFamily="sans-serif" />
+
+        <TextView
+            android:id="@+id/title_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="15dp"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:fontFamily="@font/hind" />
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="250dp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill_horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    app:srcCompat="@drawable/ic_category" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="2dp"
+                    android:paddingLeft="55dp"
+                    android:paddingTop="15dp"
+                    android:text="Category"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/detail_header_font_size"
+                    android:textStyle="bold"
+                    android:textColor="?attr/textColor"
+                    app:fontFamily="@font/hind" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/category_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="15dp"
+                android:paddingLeft="55dp"
+                android:textColor="?attr/mainTextColor"
+                android:text="@string/pref_description_social_recommendations"
+                android:textSize="@dimen/detail_value_font_size"
+                app:fontFamily="sans-serif" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:background="?attr/dividerLineColor" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill_horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    app:srcCompat="@drawable/ic_description_detail" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="2dp"
+                    android:paddingLeft="55dp"
+                    android:paddingTop="15dp"
+                    android:text="Description"
+                    android:textColor="?attr/textColor"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/detail_header_font_size"
+                    android:textStyle="bold"
+                    app:fontFamily="@font/hind" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="15dp"
+                android:paddingLeft="55dp"
+                android:text="@string/pref_description_social_recommendations"
+                android:textSize="@dimen/detail_value_font_size"
+                android:textColor="?attr/mainTextColor"
+                app:fontFamily="sans-serif" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:background="?attr/dividerLineColor" />
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill_horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    app:srcCompat="@drawable/ic_class_detail" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="2dp"
+                    android:paddingLeft="55dp"
+                    android:paddingTop="15dp"
+                    android:text="Class"
+                    android:textAllCaps="true"
+                    android:textColor="?attr/textColor"
+                    android:textSize="@dimen/detail_header_font_size"
+                    android:textStyle="bold"
+                    app:fontFamily="@font/hind" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/class_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="15dp"
+                android:paddingLeft="55dp"
+                android:text="Diagnosis"
+                android:textSize="@dimen/detail_value_font_size"
+                android:textColor="?attr/mainTextColor"
+                app:fontFamily="sans-serif" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:background="?attr/dividerLineColor" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill_horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    app:srcCompat="@drawable/ic_version_createdon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="2dp"
+                    android:paddingLeft="55dp"
+                    android:paddingTop="15dp"
+                    android:text="Version created on"
+                    android:textColor="?attr/textColor"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/detail_header_font_size"
+                    android:textStyle="bold"
+                    app:fontFamily="@font/hind" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/version_created_on"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="15dp"
+                android:paddingLeft="55dp"
+                android:text="Diagnosis"
+                android:textColor="?attr/mainTextColor"
+                android:textSize="@dimen/detail_value_font_size"
+                app:fontFamily="sans-serif" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:background="?attr/dividerLineColor" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill_horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    app:srcCompat="@drawable/ic_version" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="2dp"
+                    android:paddingLeft="55dp"
+                    android:textColor="?attr/textColor"
+                    android:paddingTop="15dp"
+                    android:text="Version"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/detail_header_font_size"
+                    android:textStyle="bold"
+                    app:fontFamily="@font/hind" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/version"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="55dp"
+                android:text="Latest version"
+                android:textSize="@dimen/detail_value_font_size"
+                android:textColor="?attr/mainTextColor"
+                app:fontFamily="sans-serif" />
+        </LinearLayout>
+
+    <!--
+    </RelativeLayout>-->
+</android.support.design.widget.CoordinatorLayout>
+</com.emilsjolander.components.StickyScrollViewItems.StickyScrollView>

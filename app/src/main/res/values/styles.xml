@@ -11,14 +11,15 @@
         <item name="noInternetConnTextColor">#fff</item>
         <item name="cardColor">#fff</item>
         <item name="cardviewBackground">@color/cardviewLightBackground</item>
-        <item name="textColor">#aeaeae</item>
+        <item name="textColor">#000</item>
         <item name="mainTextColor">@color/listview_maintext_color</item>
         <item name="tintColor">#000000</item>
         <item name="buttonColor">@color/light_blue</item>
-        <item name="statusColor">@color/lightenGrey3</item>
+        <item name="statusColor">@color/listview_maintext_color</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="dividerLineColor">@color/dividerLineColor</item>
     </style>
 
     <!-- Night / dark mode application theme. -->
@@ -27,19 +28,20 @@
         <item name="colorPrimary">#212121</item>
         <item name="colorPrimaryDark">#000</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="backgroundColor">#303030</item>
+        <item name="backgroundColor">@drawable/nightmode_gradient_background</item>
         <item name="noInternetConnBackgroundColor">#ae3333</item>
         <item name="noInternetConnTextColor">#fff</item>
         <item name="cardColor">#424242</item>
         <item name="cardviewBackground">@color/cardviewDarkBackground</item>
-        <item name="textColor">#8a9aa7</item>
+        <item name="textColor">#fff</item>
         <item name="mainTextColor">@color/listview_maintext_color</item>
         <item name="tintColor">#8a9aa7</item>
         <item name="buttonColor">#2196F3</item>
-        <item name="statusColor">@color/grey</item>
+        <item name="statusColor">@color/lightenGrey3</item>
         <item name="android:windowAnimationStyle">@style/windowstransition</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="dividerLineColor">@color/nightModeDividerLineColor</item>
     </style>
 
 

@@ -26,9 +26,8 @@ public class HMISIndicatorConcept extends RealmObject {
     private String version_created_on;
     private String version_created_by;
 
-  /*  @SerializedName("extras")
-    private RealmList<HMISIndicatorExtra> extras;
-*/
+    @SerializedName("extras")
+    private HMISIndicatorExtra extras;
     private String mappings;
     private boolean is_latest_version;
 }

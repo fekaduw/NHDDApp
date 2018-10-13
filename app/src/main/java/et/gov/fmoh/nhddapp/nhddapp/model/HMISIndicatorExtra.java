@@ -44,4 +44,16 @@ public class HMISIndicatorExtra extends RealmObject {
 
   @SerializedName("Primary Sources")
     private String primarySources;
+
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof HMISIndicatorExtra)) {
+            return false;
+        }
+        HMISIndicatorExtra other = (HMISIndicatorExtra) obj;
+        return this.getHmisCategory1().equals(other.getHmisCategory1());
+    }
+
 }
