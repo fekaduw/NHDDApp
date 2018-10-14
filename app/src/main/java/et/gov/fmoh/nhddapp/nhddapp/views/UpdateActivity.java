@@ -91,17 +91,17 @@ public class UpdateActivity extends AppCompatActivity {
 
         INTERNET_IS_AVAILABLE = isInternetAvailable();
 
-        if (INTERNET_IS_AVAILABLE) {
+        /*if (INTERNET_IS_AVAILABLE) {*/
             btnUpdate.setEnabled(true);
             checkForPermissions();
-        } else {
+       /* } else {
             btnUpdate.setEnabled(false);
-        }
+        }*/
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (INTERNET_IS_AVAILABLE) {
+/*                if (INTERNET_IS_AVAILABLE) {
                     updateTextView.setText("Update about to begin...");
 
                     showProgressBar(true);
@@ -113,9 +113,11 @@ public class UpdateActivity extends AppCompatActivity {
 
                     //todo: updateHMISIndicator();
 
-                    updateNCoD();
-                    updateHMIS();
-                }
+
+                }*/
+
+                updateNCoD();
+                updateHMIS();
             }
         });
     }
@@ -196,7 +198,9 @@ public class UpdateActivity extends AppCompatActivity {
     }
 
     private void updateNCoD() {
+        showProgressBar(true);
         DataUtils.importeNcodData(getApplicationContext(), getResources());
+        showProgressBar(false);
         /*ConceptVersion version = ApiClient.getInstance().getNcodVersion().blockingFirst();
 
         if (isVersionLatest(version, CATEGORY_NCOD)) {
@@ -270,7 +274,11 @@ public class UpdateActivity extends AppCompatActivity {
     }
 
     private void updateHMIS() {
+        showProgressBar(true);
         DataUtils.importeHMISData(getApplicationContext(), getResources());
+        showProgressBar(false);
+
+
         /*ConceptVersion version = ApiClient.getInstance().getNcodVersion().blockingFirst();
 
             if (isVersionLatest(version, CATEGORY_HMIS_INDICATOR)) {
@@ -342,6 +350,7 @@ public class UpdateActivity extends AppCompatActivity {
                     }
                 });*/
     }
+
     /*@SuppressLint("StaticFieldLeak")
     private void updateNCoD() {
         new AsyncTask<String, String, String>() {

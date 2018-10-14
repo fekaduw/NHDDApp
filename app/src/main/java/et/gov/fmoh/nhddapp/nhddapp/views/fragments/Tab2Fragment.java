@@ -233,6 +233,9 @@ public class Tab2Fragment extends Fragment implements SearchView.OnQueryTextList
                 }
                 notifyDataSetChanged();*/
             }
+
+            @Override
+            public void update(ArrayList<HMISIndicatorExtra> concepts){}
         };
         recyclerView.setAdapter(customListViewAdapter);
         textViewNotFound.setVisibility(View.INVISIBLE);

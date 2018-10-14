@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/backgroundColor"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingTop="20dp">
 
 
     <SearchView
@@ -13,7 +14,6 @@
 
         android:focusableInTouchMode="true"
         android:queryHint="@string/search_hint"
-
         />
     <!--      <android.support.v4.widget.SwipeRefreshLayout
               android:layout_width="match_parent"

@@ -24,11 +24,13 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import et.gov.fmoh.nhddapp.nhddapp.R;
+import et.gov.fmoh.nhddapp.nhddapp.model.HMISIndicator;
 import et.gov.fmoh.nhddapp.nhddapp.model.HMISIndicatorConcept;
 import et.gov.fmoh.nhddapp.nhddapp.model.NcodConcept;
 
 import static et.gov.fmoh.nhddapp.nhddapp.utils.CONST.TAG;
 
+import et.gov.fmoh.nhddapp.nhddapp.utils.CONST;
 import et.gov.fmoh.nhddapp.nhddapp.utils.CategoryInfo;
 import et.gov.fmoh.nhddapp.nhddapp.utils.DatabaseHelper;
 import et.gov.fmoh.nhddapp.nhddapp.utils.GenerateColor;
@@ -36,6 +38,8 @@ import et.gov.fmoh.nhddapp.nhddapp.utils.ItemClickListenerHelper;
 import et.gov.fmoh.nhddapp.nhddapp.utils.SharedPref;
 import et.gov.fmoh.nhddapp.nhddapp.views.adapter.CategoryListViewAdapter;
 import et.gov.fmoh.nhddapp.nhddapp.views.adapter.ViewHolder;
+import io.realm.Realm;
+import io.realm.RealmChangeListener;
 
 import static et.gov.fmoh.nhddapp.nhddapp.utils.CONST.CATEGORY_HMIS_INDICATOR;
 import static et.gov.fmoh.nhddapp.nhddapp.utils.CONST.CATEGORY_NCOD;
@@ -49,19 +53,29 @@ public class ConceptListActivity<T> extends AppCompatActivity implements SearchV
     TextView textViewNotFound;
     @BindView(R.id.progress)
     ProgressBar progressBar;
-    /*@BindView(R.id.textview_category_name)
-    TextView textViewCategory;*/
+    @BindView(R.id.search_view)
+    SearchView searchView;
 
     private SharedPref sharedPref;
+
     //custom adapter
     private CategoryListViewAdapter categoryListViewAdapter;
 
     private ArrayList<NcodConcept> conceptNcodFiltered;
-    private ArrayList<NcodConcept> conceptNcod;
+    private ArrayList<NcodConcept> conceptNcod = null;
 
     private ArrayList<HMISIndicatorConcept> conceptHMISFiltered;
     private ArrayList<HMISIndicatorConcept> conceptHMIS;
     private DatabaseHelper databaseHelper;
+
+    private Realm realm;
+
+    String categoryName;
+
+    public ConceptListActivity() {
+        databaseHelper = new DatabaseHelper();
+        realm = Realm.getDefaultInstance();
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -85,23 +99,27 @@ public class ConceptListActivity<T> extends AppCompatActivity implements SearchV
 
         ButterKnife.bind(this);
 
-        databaseHelper = new DatabaseHelper();
+        categoryName = getCategoryInfo().getCategoryName();
 
         setViews();
-/*
+
         conceptNcodFiltered = new ArrayList<>();
-        conceptNcod =;
+        conceptNcod = databaseHelper.getNcodConcepts(realm, categoryName);
 
         if (conceptNcod != null) {
-            this.conceptNcodFiltered.addAll(conceptNcod);
+            conceptNcodFiltered.addAll(conceptNcod);
+
+            realm.addChangeListener(mRealmChangeListener);
         }
 
         conceptHMISFiltered = new ArrayList<>();
-        conceptHMIS = getHMIS();
+        conceptHMIS = databaseHelper.getHmisConcepts(realm, categoryName);
 
         if (conceptHMIS != null) {
-            this.conceptHMISFiltered.addAll(conceptHMIS);
-        }*/
+            conceptHMISFiltered.addAll(conceptHMIS);
+
+            realm.addChangeListener(mRealmChangeListener);
+        }
 
         getData();
     }
@@ -112,6 +130,8 @@ public class ConceptListActivity<T> extends AppCompatActivity implements SearchV
         recyclerView.setHasFixedSize(true);
         DividerItemDecoration itemDecoration = new DividerItemDecoration(getApplicationContext(), linearLayoutManager.getOrientation());
         recyclerView.addItemDecoration(itemDecoration);
+
+        searchView.setOnQueryTextListener(this);
     }
 
     private CategoryInfo getCategoryInfo() {
@@ -141,8 +161,8 @@ public class ConceptListActivity<T> extends AppCompatActivity implements SearchV
     }
 
     private void setAdapterNCOD(int color) {
-        String categoryName = getCategoryInfo().getCategoryName();
-        conceptNcod = databaseHelper.getNcodConcepts(categoryName);
+
+        //conceptNcod = databaseHelper.getNcodConcepts(realm, categoryName);
 
         categoryListViewAdapter = new CategoryListViewAdapter<NcodConcept>(getApplicationContext(), conceptNcod,
                 new ItemClickListenerHelper() {
@@ -202,6 +222,12 @@ public class ConceptListActivity<T> extends AppCompatActivity implements SearchV
                 }
                 notifyDataSetChanged();
             }
+
+            @Override
+            public void update(ArrayList<NcodConcept> concepts) {
+                conceptNcod = concepts;
+                notifyDataSetChanged();
+            }
         };
 
         recyclerView.setAdapter(categoryListViewAdapter);
@@ -211,7 +237,7 @@ public class ConceptListActivity<T> extends AppCompatActivity implements SearchV
 
     private void setAdapterHMIS(int color) {
         String categoryName = getCategoryInfo().getCategoryName();
-        conceptHMIS = databaseHelper.getHmisConcepts(categoryName);
+        conceptHMIS = databaseHelper.getHmisConcepts(realm, categoryName);
 
         categoryListViewAdapter = new CategoryListViewAdapter<HMISIndicatorConcept>(getApplicationContext(), conceptHMIS, new ItemClickListenerHelper() {
             @Override
@@ -270,7 +296,29 @@ public class ConceptListActivity<T> extends AppCompatActivity implements SearchV
 
             @Override
             public void filter(String charText) {
+                charText = charText.toLowerCase(Locale.getDefault());
+                conceptHMIS.clear();
 
+                if (charText.length() == 0) {
+                    conceptHMIS.addAll(conceptHMISFiltered);
+                } else {
+                    for (HMISIndicatorConcept row : conceptHMISFiltered) {
+
+                        Log.d(TAG, row.getDisplay_name());
+
+                        if (row.getDisplay_name().toLowerCase(Locale.getDefault()).contains(charText)) {
+                            conceptHMIS.add(row);
+                            Log.d(TAG, "Filtered row added.");
+                        }
+                    }
+                }
+                notifyDataSetChanged();
+            }
+
+            @Override
+            public void update(ArrayList<HMISIndicatorConcept> concepts) {
+                conceptHMIS = concepts;
+                notifyDataSetChanged();
             }
         };
 
@@ -290,6 +338,80 @@ public class ConceptListActivity<T> extends AppCompatActivity implements SearchV
         String text = newText;
         categoryListViewAdapter.filter(text);
         return false;
+    }
+
+    /*shows/hides the progress bar based on the value of isShow - true/show, false/hide*/
+    private void showProgressBar(boolean isShow) {
+        if (isShow) {
+            //if (!swipeRefreshLayout.isRefreshing()) {
+            progressBar.setVisibility(View.VISIBLE);
+            //}
+        } else {
+            progressBar.setVisibility(View.GONE);
+            //swipeRefreshLayout.setRefreshing(false);
+        }
+    }
+
+    private void showRecyclerView(boolean isShow) {
+        if (isShow) {
+            textViewNotFound.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+        } else {
+            textViewNotFound.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+        }
+    }
+
+    private RealmChangeListener mRealmChangeListener = new RealmChangeListener() {
+        @Override
+        public void onChange(Object o) {
+            Log.d(TAG, "OnChange() method in change listener called");
+
+            if (getCategoryInfo().getCategory() == CATEGORY_NCOD) {
+                conceptNcod = databaseHelper.getNcodConcepts(realm, getCategoryInfo().getCategoryName());
+
+                try {
+                    if (conceptNcod != null) {
+                        showProgressBar(false);
+
+                        showRecyclerView(true);
+
+                        Log.d(TAG, "The size of concepts is: " + conceptNcod.size());
+                    }
+                } catch (NullPointerException ex) {
+                    conceptNcod = null;
+                    Log.e(CONST.TAG, ex.getMessage());
+                }
+            } else if (getCategoryInfo().getCategory() == CATEGORY_HMIS_INDICATOR) {
+                conceptHMIS = databaseHelper.getHmisConcepts(realm, getCategoryInfo().getCategoryName());
+
+                try {
+                    if (conceptHMIS != null) {
+                        showProgressBar(false);
+
+                        showRecyclerView(true);
+
+                        Log.d(TAG, "The size of concepts is: " + conceptHMIS.size());
+                    }
+                } catch (NullPointerException ex) {
+                    conceptHMIS = null;
+                    Log.e(CONST.TAG, ex.getMessage());
+                }
+            } else {
+            }
+        }
+    };
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        realm.removeChangeListener(mRealmChangeListener);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        realm.addChangeListener(mRealmChangeListener);
     }
 
     private TextDrawable getColor(NcodConcept concept, int color) {

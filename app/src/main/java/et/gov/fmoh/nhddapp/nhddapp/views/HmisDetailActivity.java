@@ -56,7 +56,11 @@ public class HmisDetailActivity extends AppCompatActivity //implements Navigatio
     private void loadHmisData(Bundle bundle) {
         ImageView iconConcept = findViewById(R.id.concept_icon);
         TextView titleTextView = findViewById(R.id.title_detail);
-        TextView categoryTextView = findViewById(R.id.category_name);
+        TextView category1TextView = findViewById(R.id.category_name1);
+        TextView category2TextView = findViewById(R.id.category_name2);
+        TextView category3TextView = findViewById(R.id.category_name3);
+        TextView category4TextView = findViewById(R.id.category_name4);
+
         TextView descriptionTextView = findViewById(R.id.description);
         TextView classTextView = findViewById(R.id.class_name);
         TextView sourceTextView = findViewById(R.id.source);
@@ -74,7 +78,11 @@ public class HmisDetailActivity extends AppCompatActivity //implements Navigatio
         GenerateColor<NcodConcept> generateColor = new GenerateColor<>();
         iconConcept.setImageDrawable(generateColor.getTextDrawable(bundle.getString("categoryName"), bundle.getInt("color")));
         titleTextView.setText(bundle.getString("display_name"));
-        categoryTextView.setText(bundle.getString("categoryName"));
+        category1TextView.setText(bundle.getString("hmisCategory1"));
+        category2TextView.setText(bundle.getString("hmisCategory2"));
+        category3TextView.setText(bundle.getString("hmisCategory3"));
+        category4TextView.setText(bundle.getString("hmisCategory4"));
+
         descriptionTextView.setText(bundle.getString("description"));
         classTextView.setText(bundle.getString("concept_class"));
 

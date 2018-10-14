@@ -198,7 +198,10 @@ public class Tab1Fragment extends Fragment implements SearchView.OnQueryTextList
                 Intent i = new Intent(context, ConceptListActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("category", CATEGORY_NCOD);
+
                 bundle.putString("categoryName", concepts.get(position).getICD10Chapter());
+                //bundle.putString("categoryName", ("ICD-10 Chapter: ").concat(concepts.get(position).getICD10Chapter()));
+
                 bundle.putInt("color", color.get(position));
                 i.putExtras(bundle);
                 startActivity(i);
@@ -209,10 +212,13 @@ public class Tab1Fragment extends Fragment implements SearchView.OnQueryTextList
             @Override
             public void onBindData(ViewHolder holder1, NcodExtras concept) {
                 Log.d(TAG, "Current concept name: " + concept.getICD10Chapter());
+
                 if(concept!=null) {
                     ViewHolder holder = holder1;
-                    holder.textViewName.setText(concept.getICD10Chapter());
-                    holder.textViewDesc.setText(concept.getICD10Block());
+
+                    holder.textViewName.setText(("ICD-10 Chapter: ").concat(concept.getICD10Chapter()));
+
+                    holder.textViewDesc.setText(("ICD-10 Block: ").concat(concept.getICD10Block()));
 
                     holder.iconConcept.setImageDrawable(getColor(concept));
 
@@ -222,9 +228,6 @@ public class Tab1Fragment extends Fragment implements SearchView.OnQueryTextList
 
             @Override
             public void filter(String charText) {
-                ArrayList<String> _concept;
-
-
                 charText = charText.toLowerCase(Locale.getDefault());
                 concepts.clear();
 
@@ -243,6 +246,9 @@ public class Tab1Fragment extends Fragment implements SearchView.OnQueryTextList
                 }
                 notifyDataSetChanged();
             }
+
+            @Override
+            public void update(ArrayList<NcodExtras> concepts){}
         };
 
         recyclerView.setAdapter(customListViewAdapter);

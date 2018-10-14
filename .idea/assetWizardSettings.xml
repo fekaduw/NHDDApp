@@ -82,7 +82,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/action/ic_system_update_alt_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/communication/ic_call_split_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -93,9 +93,11 @@
                         <option name="values">
                           <map>
                             <entry key="color" value="97d8fe" />
-                            <entry key="outputName" value="ic_update" />
+                            <entry key="height" value="30" />
+                            <entry key="outputName" value="ic_disaggregation" />
                             <entry key="overrideSize" value="true" />
                             <entry key="sourceFile" value="C:\Users\Ethiopia" />
+                            <entry key="width" value="30" />
                           </map>
                         </option>
                       </PersistentState>

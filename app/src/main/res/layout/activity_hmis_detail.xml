@@ -41,12 +41,12 @@
             android:orientation="vertical">
             <ImageView
                 android:id="@+id/concept_icon"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="@dimen/detail_top_icon_size"
+                android:layout_height="@dimen/detail_top_icon_size"
 
                 android:gravity="center"
                 android:textColor="?attr/textColor"
-                android:textSize="30sp"
+                android:textSize="@dimen/detail_icon_text_size"
                 app:fontFamily="sans-serif" />
 
             <TextView
@@ -54,12 +54,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:padding="15dp"
-                android:paddingBottom="15dp"
-                android:paddingTop="15dp"
+                android:padding="@dimen/detail_view_padding"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="@dimen/detail_top_text_size"
                 app:fontFamily="@font/hind" />
         </LinearLayout>
 
@@ -75,19 +73,19 @@
                 android:layout_gravity="fill_horizontal">
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_width="@dimen/detail_view_icon_size"
+                    android:layout_height="@dimen/detail_view_icon_size"
+                    android:layout_marginLeft="@dimen/detail_view_padding"
+                    android:layout_marginTop="@dimen/detail_view_icon_margin_top"
                     app:srcCompat="@drawable/ic_category" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="2dp"
-                    android:paddingLeft="55dp"
-                    android:paddingTop="15dp"
-                    android:text="Category"
+                    android:paddingBottom="@dimen/detail_view_label_padding_bottom"
+                    android:paddingLeft="@dimen/detail_view_label_padding_left"
+                    android:paddingTop="@dimen/detail_view_padding"
+                    android:text="Category-1"
                     android:textAllCaps="true"
                     android:textSize="@dimen/detail_header_font_size"
                     android:textStyle="bold"
@@ -96,11 +94,11 @@
             </RelativeLayout>
 
             <TextView
-                android:id="@+id/category_name"
+                android:id="@+id/category_name1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="15dp"
-                android:paddingLeft="55dp"
+                android:paddingBottom="@dimen/detail_view_padding"
+                android:paddingLeft="@dimen/detail_view_label_padding_left"
                 android:textColor="?attr/mainTextColor"
                 android:text="@string/pref_description_social_recommendations"
                 android:textSize="@dimen/detail_value_font_size"
@@ -108,8 +106,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="15dp"
+                android:layout_height="@dimen/detail_view_divider_line_height"
+                android:layout_marginLeft="@dimen/detail_view_label_padding_left"
                 android:background="?attr/dividerLineColor" />
 
             <RelativeLayout
@@ -118,18 +116,145 @@
                 android:layout_gravity="fill_horizontal">
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_width="@dimen/detail_view_icon_size"
+                    android:layout_height="@dimen/detail_view_icon_size"
+                    android:layout_marginLeft="@dimen/detail_view_padding"
+                    android:layout_marginTop="@dimen/detail_view_icon_margin_top"
+                    app:srcCompat="@drawable/ic_category" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/detail_view_label_padding_bottom"
+                    android:paddingLeft="@dimen/detail_view_label_padding_left"
+                    android:paddingTop="@dimen/detail_view_padding"
+                    android:text="Category-2"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/detail_header_font_size"
+                    android:textStyle="bold"
+                    android:textColor="?attr/textColor"
+                    app:fontFamily="@font/hind" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/category_name2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/detail_view_padding"
+                android:paddingLeft="@dimen/detail_view_label_padding_left"
+                android:textColor="?attr/mainTextColor"
+                android:text="@string/pref_description_social_recommendations"
+                android:textSize="@dimen/detail_value_font_size"
+                app:fontFamily="sans-serif" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/detail_view_divider_line_height"
+                android:layout_marginLeft="@dimen/detail_view_label_padding_left"
+                android:background="?attr/dividerLineColor" />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill_horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/detail_view_icon_size"
+                    android:layout_height="@dimen/detail_view_icon_size"
+                    android:layout_marginLeft="@dimen/detail_view_padding"
+                    android:layout_marginTop="@dimen/detail_view_icon_margin_top"
+                    app:srcCompat="@drawable/ic_category" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/detail_view_label_padding_bottom"
+                    android:paddingLeft="@dimen/detail_view_label_padding_left"
+                    android:paddingTop="@dimen/detail_view_padding"
+                    android:text="Category-3"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/detail_header_font_size"
+                    android:textStyle="bold"
+                    android:textColor="?attr/textColor"
+                    app:fontFamily="@font/hind" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/category_name3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/detail_view_padding"
+                android:paddingLeft="@dimen/detail_view_label_padding_left"
+                android:textColor="?attr/mainTextColor"
+                android:text="@string/pref_description_social_recommendations"
+                android:textSize="@dimen/detail_value_font_size"
+                app:fontFamily="sans-serif" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/detail_view_divider_line_height"
+                android:layout_marginLeft="@dimen/detail_view_label_padding_left"
+                android:background="?attr/dividerLineColor" />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill_horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/detail_view_icon_size"
+                    android:layout_height="@dimen/detail_view_icon_size"
+                    android:layout_marginLeft="@dimen/detail_view_padding"
+                    android:layout_marginTop="@dimen/detail_view_icon_margin_top"
+                    app:srcCompat="@drawable/ic_category" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/detail_view_label_padding_bottom"
+                    android:paddingLeft="@dimen/detail_view_label_padding_left"
+                    android:paddingTop="@dimen/detail_view_padding"
+                    android:text="Category-4"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/detail_header_font_size"
+                    android:textStyle="bold"
+                    android:textColor="?attr/textColor"
+                    app:fontFamily="@font/hind" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/category_name4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/detail_view_padding"
+                android:paddingLeft="@dimen/detail_view_label_padding_left"
+                android:textColor="?attr/mainTextColor"
+                android:text="@string/pref_description_social_recommendations"
+                android:textSize="@dimen/detail_value_font_size"
+                app:fontFamily="sans-serif" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/detail_view_divider_line_height"
+                android:layout_marginLeft="@dimen/detail_view_label_padding_left"
+                android:background="?attr/dividerLineColor" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill_horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/detail_view_icon_size"
+                    android:layout_height="@dimen/detail_view_icon_size"
+                    android:layout_marginLeft="@dimen/detail_view_padding"
+                    android:layout_marginTop="@dimen/detail_view_icon_margin_top"
                     app:srcCompat="@drawable/ic_description_detail" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="2dp"
-                    android:paddingLeft="55dp"
-                    android:paddingTop="15dp"
+                    android:paddingBottom="@dimen/detail_view_label_padding_bottom"
+                    android:paddingLeft="@dimen/detail_view_label_padding_left"
+                    android:paddingTop="@dimen/detail_view_padding"
                     android:text="Description"
                     android:textColor="?attr/textColor"
                     android:textAllCaps="true"
@@ -142,8 +267,8 @@
                 android:id="@+id/description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="15dp"
-                android:paddingLeft="55dp"
+                android:paddingBottom="@dimen/detail_view_padding"
+                android:paddingLeft="@dimen/detail_view_label_padding_left"
                 android:text="@string/pref_description_social_recommendations"
                 android:textSize="@dimen/detail_value_font_size"
                 android:textColor="?attr/mainTextColor"
@@ -151,8 +276,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="15dp"
+                android:layout_height="@dimen/detail_view_divider_line_height"
+                android:layout_marginLeft="@dimen/detail_view_label_padding_left"
                 android:background="?attr/dividerLineColor" />
 
 
@@ -162,18 +287,18 @@
                 android:layout_gravity="fill_horizontal">
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_width="@dimen/detail_view_icon_size"
+                    android:layout_height="@dimen/detail_view_icon_size"
+                    android:layout_marginLeft="@dimen/detail_view_padding"
+                    android:layout_marginTop="@dimen/detail_view_icon_margin_top"
                     app:srcCompat="@drawable/ic_class_detail" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="2dp"
-                    android:paddingLeft="55dp"
-                    android:paddingTop="15dp"
+                    android:paddingBottom="@dimen/detail_view_label_padding_bottom"
+                    android:paddingLeft="@dimen/detail_view_label_padding_left"
+                    android:paddingTop="@dimen/detail_view_padding"
                     android:text="Class"
                     android:textAllCaps="true"
                     android:textColor="?attr/textColor"
@@ -186,8 +311,8 @@
                 android:id="@+id/class_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="15dp"
-                android:paddingLeft="55dp"
+                android:paddingBottom="@dimen/detail_view_padding"
+                android:paddingLeft="@dimen/detail_view_label_padding_left"
                 android:text="Diagnosis"
                 android:textSize="@dimen/detail_value_font_size"
                 android:textColor="?attr/mainTextColor"
@@ -195,8 +320,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="15dp"
+                android:layout_height="@dimen/detail_view_divider_line_height"
+                android:layout_marginLeft="@dimen/detail_view_label_padding_left"
                 android:background="?attr/dividerLineColor" />
 
             <RelativeLayout
@@ -205,18 +330,18 @@
                 android:layout_gravity="fill_horizontal">
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_width="@dimen/detail_view_icon_size"
+                    android:layout_height="@dimen/detail_view_icon_size"
+                    android:layout_marginLeft="@dimen/detail_view_padding"
+                    android:layout_marginTop="@dimen/detail_view_icon_margin_top"
                     app:srcCompat="@drawable/ic_source" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="2dp"
-                    android:paddingLeft="55dp"
-                    android:paddingTop="15dp"
+                    android:paddingBottom="@dimen/detail_view_label_padding_bottom"
+                    android:paddingLeft="@dimen/detail_view_label_padding_left"
+                    android:paddingTop="@dimen/detail_view_padding"
                     android:text="Source"
                     android:textColor="?attr/textColor"
                     android:textAllCaps="true"
@@ -229,8 +354,8 @@
                 android:id="@+id/source"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="15dp"
-                android:paddingLeft="55dp"
+                android:paddingBottom="@dimen/detail_view_padding"
+                android:paddingLeft="@dimen/detail_view_label_padding_left"
                 android:text="Diagnosis"
                 android:textColor="?attr/mainTextColor"
                 android:textSize="@dimen/detail_value_font_size"
@@ -238,8 +363,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="15dp"
+                android:layout_height="@dimen/detail_view_divider_line_height"
+                android:layout_marginLeft="@dimen/detail_view_label_padding_left"
                 android:background="?attr/dividerLineColor" />
 
             <RelativeLayout
@@ -248,19 +373,19 @@
                 android:layout_gravity="fill_horizontal">
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_width="@dimen/detail_view_icon_size"
+                    android:layout_height="@dimen/detail_view_icon_size"
+                    android:layout_marginLeft="@dimen/detail_view_padding"
+                    android:layout_marginTop="@dimen/detail_view_icon_margin_top"
                     app:srcCompat="@drawable/ic_data_type" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="2dp"
-                    android:paddingLeft="55dp"
+                    android:paddingBottom="@dimen/detail_view_label_padding_bottom"
+                    android:paddingLeft="@dimen/detail_view_label_padding_left"
                     android:textColor="?attr/textColor"
-                    android:paddingTop="15dp"
+                    android:paddingTop="@dimen/detail_view_padding"
                     android:text="Data type"
                     android:textAllCaps="true"
                     android:textSize="@dimen/detail_header_font_size"
@@ -272,7 +397,7 @@
                 android:id="@+id/data_type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="55dp"
+                android:paddingLeft="@dimen/detail_view_label_padding_left"
                 android:text="Latest version"
                 android:textSize="@dimen/detail_value_font_size"
                 android:textColor="?attr/mainTextColor"
@@ -280,8 +405,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="15dp"
+                android:layout_height="@dimen/detail_view_divider_line_height"
+                android:layout_marginLeft="@dimen/detail_view_label_padding_left"
                 android:background="?attr/dividerLineColor" />
 
             <RelativeLayout
@@ -290,18 +415,18 @@
                 android:layout_gravity="fill_horizontal">
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_width="@dimen/detail_view_icon_size"
+                    android:layout_height="@dimen/detail_view_icon_size"
+                    android:layout_marginLeft="@dimen/detail_view_padding"
+                    android:layout_marginTop="@dimen/detail_view_icon_margin_top"
                     app:srcCompat="@drawable/ic_numerator" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="2dp"
-                    android:paddingLeft="55dp"
-                    android:paddingTop="15dp"
+                    android:paddingBottom="@dimen/detail_view_label_padding_bottom"
+                    android:paddingLeft="@dimen/detail_view_label_padding_left"
+                    android:paddingTop="@dimen/detail_view_padding"
                     android:text="Numerator"
                     android:textColor="?attr/textColor"
                     android:textAllCaps="true"
@@ -314,16 +439,16 @@
                 android:id="@+id/numerator"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="15dp"
-                android:paddingLeft="55dp"
+                android:paddingBottom="@dimen/detail_view_padding"
+                android:paddingLeft="@dimen/detail_view_label_padding_left"
                 android:text="Diagnosis"
                 android:textColor="?attr/mainTextColor"
                 android:textSize="@dimen/detail_value_font_size"
                 app:fontFamily="sans-serif" />
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="15dp"
+                android:layout_height="@dimen/detail_view_divider_line_height"
+                android:layout_marginLeft="@dimen/detail_view_label_padding_left"
                 android:background="?attr/dividerLineColor" />
 
             <RelativeLayout
@@ -332,18 +457,18 @@
                 android:layout_gravity="fill_horizontal">
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_width="@dimen/detail_view_icon_size"
+                    android:layout_height="@dimen/detail_view_icon_size"
+                    android:layout_marginLeft="@dimen/detail_view_padding"
+                    android:layout_marginTop="@dimen/detail_view_icon_margin_top"
                     app:srcCompat="@drawable/ic_denominator" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="2dp"
-                    android:paddingLeft="55dp"
-                    android:paddingTop="15dp"
+                    android:paddingBottom="@dimen/detail_view_label_padding_bottom"
+                    android:paddingLeft="@dimen/detail_view_label_padding_left"
+                    android:paddingTop="@dimen/detail_view_padding"
                     android:text="Denominator"
                     android:textColor="?attr/textColor"
                     android:textAllCaps="true"
@@ -356,8 +481,8 @@
                 android:id="@+id/denominator"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="15dp"
-                android:paddingLeft="55dp"
+                android:paddingBottom="@dimen/detail_view_padding"
+                android:paddingLeft="@dimen/detail_view_label_padding_left"
                 android:text="Diagnosis"
                 android:textColor="?attr/mainTextColor"
                 android:textSize="@dimen/detail_value_font_size"
@@ -365,8 +490,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="15dp"
+                android:layout_height="@dimen/detail_view_divider_line_height"
+                android:layout_marginLeft="@dimen/detail_view_label_padding_left"
                 android:background="?attr/dividerLineColor" />
 
             <RelativeLayout
@@ -375,18 +500,18 @@
                 android:layout_gravity="fill_horizontal">
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_width="@dimen/detail_view_icon_size"
+                    android:layout_height="@dimen/detail_view_icon_size"
+                    android:layout_marginLeft="@dimen/detail_view_padding"
+                    android:layout_marginTop="@dimen/detail_view_icon_margin_top"
                     app:srcCompat="@drawable/ic_disaggregation" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="2dp"
-                    android:paddingLeft="55dp"
-                    android:paddingTop="15dp"
+                    android:paddingBottom="@dimen/detail_view_label_padding_bottom"
+                    android:paddingLeft="@dimen/detail_view_label_padding_left"
+                    android:paddingTop="@dimen/detail_view_padding"
                     android:text="Disaggregation"
                     android:textColor="?attr/textColor"
                     android:textAllCaps="true"
@@ -399,8 +524,8 @@
                 android:id="@+id/disaggregation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="15dp"
-                android:paddingLeft="55dp"
+                android:paddingBottom="@dimen/detail_view_padding"
+                android:paddingLeft="@dimen/detail_view_label_padding_left"
                 android:text="Diagnosis"
                 android:textColor="?attr/mainTextColor"
                 android:textSize="@dimen/detail_value_font_size"
@@ -408,8 +533,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="15dp"
+                android:layout_height="@dimen/detail_view_divider_line_height"
+                android:layout_marginLeft="@dimen/detail_view_label_padding_left"
                 android:background="?attr/dividerLineColor" />
 
             <RelativeLayout
@@ -418,18 +543,18 @@
                 android:layout_gravity="fill_horizontal">
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_width="@dimen/detail_view_icon_size"
+                    android:layout_height="@dimen/detail_view_icon_size"
+                    android:layout_marginLeft="@dimen/detail_view_padding"
+                    android:layout_marginTop="@dimen/detail_view_icon_margin_top"
                     app:srcCompat="@drawable/ic_reporting_frequency" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="2dp"
-                    android:paddingLeft="55dp"
-                    android:paddingTop="15dp"
+                    android:paddingBottom="@dimen/detail_view_label_padding_bottom"
+                    android:paddingLeft="@dimen/detail_view_label_padding_left"
+                    android:paddingTop="@dimen/detail_view_padding"
                     android:text="Reporting frequency"
                     android:textColor="?attr/textColor"
                     android:textAllCaps="true"
@@ -442,8 +567,8 @@
                 android:id="@+id/reporting_frequency"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="15dp"
-                android:paddingLeft="55dp"
+                android:paddingBottom="@dimen/detail_view_padding"
+                android:paddingLeft="@dimen/detail_view_label_padding_left"
                 android:text="Diagnosis"
                 android:textColor="?attr/mainTextColor"
                 android:textSize="@dimen/detail_value_font_size"
@@ -451,8 +576,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="15dp"
+                android:layout_height="@dimen/detail_view_divider_line_height"
+                android:layout_marginLeft="@dimen/detail_view_label_padding_left"
                 android:background="?attr/dividerLineColor" />
 
             <RelativeLayout
@@ -461,18 +586,18 @@
                 android:layout_gravity="fill_horizontal">
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_width="@dimen/detail_view_icon_size"
+                    android:layout_height="@dimen/detail_view_icon_size"
+                    android:layout_marginLeft="@dimen/detail_view_padding"
+                    android:layout_marginTop="@dimen/detail_view_icon_margin_top"
                     app:srcCompat="@drawable/ic_multiplier" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="2dp"
-                    android:paddingLeft="55dp"
-                    android:paddingTop="15dp"
+                    android:paddingBottom="@dimen/detail_view_label_padding_bottom"
+                    android:paddingLeft="@dimen/detail_view_label_padding_left"
+                    android:paddingTop="@dimen/detail_view_padding"
                     android:text="Multiplier"
                     android:textColor="?attr/textColor"
                     android:textAllCaps="true"
@@ -485,8 +610,8 @@
                 android:id="@+id/multiplier"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="15dp"
-                android:paddingLeft="55dp"
+                android:paddingBottom="@dimen/detail_view_padding"
+                android:paddingLeft="@dimen/detail_view_label_padding_left"
                 android:text="Diagnosis"
                 android:textColor="?attr/mainTextColor"
                 android:textSize="@dimen/detail_value_font_size"
@@ -494,8 +619,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="15dp"
+                android:layout_height="@dimen/detail_view_divider_line_height"
+                android:layout_marginLeft="@dimen/detail_view_label_padding_left"
                 android:background="?attr/dividerLineColor" />
 
             <RelativeLayout
@@ -504,18 +629,18 @@
                 android:layout_gravity="fill_horizontal">
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_width="@dimen/detail_view_icon_size"
+                    android:layout_height="@dimen/detail_view_icon_size"
+                    android:layout_marginLeft="@dimen/detail_view_padding"
+                    android:layout_marginTop="@dimen/detail_view_icon_margin_top"
                     app:srcCompat="@drawable/ic_primary_sources" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="2dp"
-                    android:paddingLeft="55dp"
-                    android:paddingTop="15dp"
+                    android:paddingBottom="@dimen/detail_view_label_padding_bottom"
+                    android:paddingLeft="@dimen/detail_view_label_padding_left"
+                    android:paddingTop="@dimen/detail_view_padding"
                     android:text="Primary sources"
                     android:textColor="?attr/textColor"
                     android:textAllCaps="true"
@@ -528,8 +653,8 @@
                 android:id="@+id/primary_sources"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="15dp"
-                android:paddingLeft="55dp"
+                android:paddingBottom="@dimen/detail_view_padding"
+                android:paddingLeft="@dimen/detail_view_label_padding_left"
                 android:text="Diagnosis"
                 android:textColor="?attr/mainTextColor"
                 android:textSize="@dimen/detail_value_font_size"
@@ -537,8 +662,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="15dp"
+                android:layout_height="@dimen/detail_view_divider_line_height"
+                android:layout_marginLeft="@dimen/detail_view_label_padding_left"
                 android:background="?attr/dividerLineColor" />
 
             <RelativeLayout
@@ -547,18 +672,18 @@
                 android:layout_gravity="fill_horizontal">
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_width="@dimen/detail_view_icon_size"
+                    android:layout_height="@dimen/detail_view_icon_size"
+                    android:layout_marginLeft="@dimen/detail_view_padding"
+                    android:layout_marginTop="@dimen/detail_view_icon_margin_top"
                     app:srcCompat="@drawable/ic_reporting_units" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="2dp"
-                    android:paddingLeft="55dp"
-                    android:paddingTop="15dp"
+                    android:paddingBottom="@dimen/detail_view_label_padding_bottom"
+                    android:paddingLeft="@dimen/detail_view_label_padding_left"
+                    android:paddingTop="@dimen/detail_view_padding"
                     android:text="Applicable reporting units"
                     android:textColor="?attr/textColor"
                     android:textAllCaps="true"
@@ -571,8 +696,8 @@
                 android:id="@+id/applicable_reporting_units"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="15dp"
-                android:paddingLeft="55dp"
+                android:paddingBottom="@dimen/detail_view_padding"
+                android:paddingLeft="@dimen/detail_view_label_padding_left"
                 android:text="Diagnosis"
                 android:textColor="?attr/mainTextColor"
                 android:textSize="@dimen/detail_value_font_size"
@@ -580,8 +705,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="15dp"
+                android:layout_height="@dimen/detail_view_divider_line_height"
+                android:layout_marginLeft="@dimen/detail_view_label_padding_left"
                 android:background="?attr/dividerLineColor" />
 
             <RelativeLayout
@@ -590,18 +715,18 @@
                 android:layout_gravity="fill_horizontal">
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_width="@dimen/detail_view_icon_size"
+                    android:layout_height="@dimen/detail_view_icon_size"
+                    android:layout_marginLeft="@dimen/detail_view_padding"
+                    android:layout_marginTop="@dimen/detail_view_icon_margin_top"
                     app:srcCompat="@drawable/ic_version_createdon" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="2dp"
-                    android:paddingLeft="55dp"
-                    android:paddingTop="15dp"
+                    android:paddingBottom="@dimen/detail_view_label_padding_bottom"
+                    android:paddingLeft="@dimen/detail_view_label_padding_left"
+                    android:paddingTop="@dimen/detail_view_padding"
                     android:text="Version created on"
                     android:textColor="?attr/textColor"
                     android:textAllCaps="true"
@@ -614,8 +739,8 @@
                 android:id="@+id/version_created_on"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="15dp"
-                android:paddingLeft="55dp"
+                android:paddingBottom="@dimen/detail_view_padding"
+                android:paddingLeft="@dimen/detail_view_label_padding_left"
                 android:text="Diagnosis"
                 android:textColor="?attr/mainTextColor"
                 android:textSize="@dimen/detail_value_font_size"
@@ -623,8 +748,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="15dp"
+                android:layout_height="@dimen/detail_view_divider_line_height"
+                android:layout_marginLeft="@dimen/detail_view_label_padding_left"
                 android:background="?attr/dividerLineColor" />
 
             <RelativeLayout
@@ -633,18 +758,18 @@
                 android:layout_gravity="fill_horizontal">
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_width="@dimen/detail_view_icon_size"
+                    android:layout_height="@dimen/detail_view_icon_size"
+                    android:layout_marginLeft="@dimen/detail_view_padding"
+                    android:layout_marginTop="@dimen/detail_view_icon_margin_top"
                     app:srcCompat="@drawable/ic_version" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="2dp"
-                    android:paddingLeft="55dp"
-                    android:paddingTop="15dp"
+                    android:paddingBottom="@dimen/detail_view_label_padding_bottom"
+                    android:paddingLeft="@dimen/detail_view_label_padding_left"
+                    android:paddingTop="@dimen/detail_view_padding"
                     android:text="Version"
                     android:textColor="?attr/textColor"
                     android:textAllCaps="true"
@@ -657,8 +782,8 @@
                 android:id="@+id/version"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="15dp"
-                android:paddingLeft="55dp"
+                android:paddingBottom="@dimen/detail_view_padding"
+                android:paddingLeft="@dimen/detail_view_label_padding_left"
                 android:text="Diagnosis"
                 android:textColor="?attr/mainTextColor"
                 android:textSize="@dimen/detail_value_font_size"

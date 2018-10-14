@@ -248,7 +248,7 @@ public class DataUtils {
                 InputStream inputStream = resources.openRawResource(R.raw.exportncod);
                 try {
                     realm.createObjectFromJson(NCoD.class, inputStream);
-                    Log.d(TAG, "Successfully added the data.");
+                    Log.d(TAG, "Successfully added the NCOD data.");
                     transactionTime.setEnd(System.currentTimeMillis());
 
                 } catch (Exception e) {

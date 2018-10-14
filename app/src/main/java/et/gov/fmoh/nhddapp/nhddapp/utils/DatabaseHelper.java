@@ -28,10 +28,10 @@ import io.realm.RealmResults;
 import static et.gov.fmoh.nhddapp.nhddapp.utils.CONST.TAG;
 
 public class DatabaseHelper<T> {
-    Realm realm;
+    //Realm realm;
 
     public DatabaseHelper() {
-        realm = Realm.getDefaultInstance();
+        //realm = Realm.getDefaultInstance();
     }
 
     public boolean isNCODDataAvailable(Realm realm) {
@@ -69,6 +69,9 @@ public class DatabaseHelper<T> {
                     if (TextUtils.isEmpty(ext.getICD10Block()) || TextUtils.isEmpty(ext.getICD10Chapter()))
                         continue;
                     if (!extras.contains(ext)) {
+                        /*NcodExtras xtra = new NcodExtras();
+                        xtra.setICD10Block(("ICD-10 Block: ").concat(ext.getICD10Block()));
+                        xtra.setICD10Chapter(("ICD-10 Chapter: ").concat(ext.getICD10Chapter()));*/
                         extras.add(ext);
                     }
                 }
@@ -124,7 +127,80 @@ public class DatabaseHelper<T> {
         return null;
     }
 
-    public ArrayList<NcodConcept> getNCoDConcepts() {
+    public ArrayList<NcodConcept> getNcodConcepts(Realm realm, String categoryName) {
+        realm = Realm.getDefaultInstance();
+
+        RealmResults<NCoD> concepts = realm.where(NCoD.class).findAll();
+        Log.d(TAG, "No. of concepts: " + concepts.size());
+        if (concepts.size() > 0) {
+            Log.d(TAG, "Found: " + concepts.get(0).getConcepts().size() + " concepts in the database");
+            Log.d(TAG, "Category name: " + categoryName);
+
+            RealmList<NcodConcept> ncodRepos = concepts.get(0).getConcepts();
+            ArrayList<NcodConcept> result = new ArrayList<>();
+            for (NcodConcept r : ncodRepos) {
+                Log.d(TAG, "Current category: " + r.getExtras().getICD10Chapter());
+
+                if (!TextUtils.isEmpty (r.getExtras().getICD10Chapter()) && r.getExtras().getICD10Chapter().equals(categoryName)) {
+                    result.add(r);
+                }
+            }
+
+            return result != null ? (ArrayList<NcodConcept>) realm.copyFromRealm(result) : null;
+            //return result;
+        } else {
+            Log.d(TAG, "Found no concepts in the database!");
+            return null;
+        }
+    }
+
+    public ArrayList<HMISIndicatorConcept> getHmisConcepts(Realm realm, String categoryName) {
+        realm = Realm.getDefaultInstance();
+
+        RealmResults<HMISIndicator> concepts = realm.where(HMISIndicator.class).findAll();
+        Log.d("Test", "No. of concepts: " + concepts.size());
+        if (concepts.size() > 0) {
+            Log.d("Realm", "Found: " + concepts.get(0).getConcepts().size() + " concepts in the database");
+            Log.d("Realm", "Category name: " + categoryName);
+
+            RealmList<HMISIndicatorConcept> hmisRepos = concepts.get(0).getConcepts();
+            ArrayList<HMISIndicatorConcept> result = new ArrayList<>();
+            for (HMISIndicatorConcept r : hmisRepos) {
+                Log.d("Realm", "Current category: " + r.getExtras().getHmisCategory1());
+
+                if (!TextUtils.isEmpty(r.getExtras().getHmisCategory1()) && r.getExtras().getHmisCategory1().equals(categoryName)) {
+                    result.add(r);
+                }
+            }
+
+            return result != null ? (ArrayList<HMISIndicatorConcept>) realm.copyFromRealm(result) : null;
+            //return result;
+        } else {
+            Log.d(TAG, "Found no concepts in the database!");
+            return null;
+        }
+    }
+
+    /*public ArrayList<HMISIndicatorConcept> getHMISIndicatorConcepts(Realm realm) {
+
+        //Get data from the database
+        RealmResults<HMISIndicator> concept = realm.where(HMISIndicator.class).findAll();//findAllAsync();
+        Log.d(TAG, "There are " + concept.size() + " hmis concepts in the database");
+        try {
+            if (concept.size() > 0) {
+                RealmList<HMISIndicatorConcept> newData = concept.get(0).getConcepts();
+                return newData != null ? (ArrayList<HMISIndicatorConcept>) realm.copyFromRealm(newData) : null;
+            }
+        } catch (Exception ex) {
+            Log.e(TAG, "getHMISIndicatorConcepts(): HMIS-Indicators related error occurred when trying to fetch data.\n" + ex.getMessage());
+            ex.getStackTrace();
+            return null;
+        }
+
+        return null;
+    }*/
+
+/*public ArrayList<NcodConcept> getNCoDConcepts(Realm realm) {
 
         //Get data from the database
         RealmResults<NCoD> concept = realm.where(NCoD.class).findAll();//findAllAsync()
@@ -143,76 +219,5 @@ public class DatabaseHelper<T> {
         Log.d(TAG, "Found no ncod data in the database!");
 
         return null;
-    }
-
-    public ArrayList<NcodConcept> getNcodConcepts(String categoryName) {
-        realm = Realm.getDefaultInstance();
-
-        RealmResults<NCoD> concepts = realm.where(NCoD.class).findAll();
-        Log.d("Test", "No. of concepts: " + concepts.size());
-        if (concepts.size() > 0) {
-            Log.d(TAG, "Found: " + concepts.get(0).getConcepts().size() + " concepts in the database");
-            Log.d(TAG, "Category name: " + categoryName);
-
-            RealmList<NcodConcept> ncodRepos = concepts.get(0).getConcepts();
-            ArrayList<NcodConcept> result = new ArrayList<>();
-            for (NcodConcept r : ncodRepos) {
-                Log.d("Realm", "Current category: " + r.getExtras().getICD10Chapter());
-
-                if (!TextUtils.isEmpty (r.getExtras().getICD10Chapter()) && r.getExtras().getICD10Chapter().equals(categoryName)) {
-                    result.add(r);
-                }
-            }
-            return result;
-        } else {
-            Log.d(TAG, "Found no concepts in the database!");
-            return null;
-        }
-    }
-
-    public ArrayList<HMISIndicatorConcept> getHmisConcepts(String categoryName) {
-        realm = Realm.getDefaultInstance();
-
-        RealmResults<HMISIndicator> concepts = realm.where(HMISIndicator.class).findAll();
-        Log.d("Test", "No. of concepts: " + concepts.size());
-        if (concepts.size() > 0) {
-            Log.d("Realm", "Found: " + concepts.get(0).getConcepts().size() + " concepts in the database");
-            Log.d("Realm", "Category name: " + categoryName);
-
-            RealmList<HMISIndicatorConcept> hmisRepos = concepts.get(0).getConcepts();
-            ArrayList<HMISIndicatorConcept> result = new ArrayList<>();
-            for (HMISIndicatorConcept r : hmisRepos) {
-                Log.d("Realm", "Current category: " + r.getExtras().getHmisCategory1());
-
-                if (!TextUtils.isEmpty(r.getExtras().getHmisCategory1()) && r.getExtras().getHmisCategory1().equals(categoryName)) {
-                    result.add(r);
-                }
-            }
-            return result;
-        } else {
-            Log.d(TAG, "Found no concepts in the database!");
-            return null;
-        }
-    }
-
-    public ArrayList<HMISIndicatorConcept> getHMISIndicatorConcepts(Realm realm) {
-
-        //Get data from the database
-        RealmResults<HMISIndicator> concept = realm.where(HMISIndicator.class).findAll();//findAllAsync();
-        Log.d(TAG, "There are " + concept.size() + " hmis concepts in the database");
-        try {
-            if (concept.size() > 0) {
-                RealmList<HMISIndicatorConcept> newData = concept.get(0).getConcepts();
-                return newData != null ? (ArrayList<HMISIndicatorConcept>) realm.copyFromRealm(newData) : null;
-            }
-        } catch (Exception ex) {
-            Log.e(TAG, "getHMISIndicatorConcepts(): HMIS-Indicators related error occurred when trying to fetch data.\n" + ex.getMessage());
-            ex.getStackTrace();
-            return null;
-        }
-
-        return null;
-    }
-
-
+    }*/
 }

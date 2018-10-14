@@ -19,6 +19,7 @@ public abstract class CategoryListViewAdapter<T> extends RecyclerView.Adapter<Vi
 
     public abstract void onBindData(ViewHolder holder, T val);
     public abstract void filter(String charText);
+    public abstract void update(ArrayList<T> items);
 
     public CategoryListViewAdapter(Context context, ArrayList<T> items, ItemClickListenerHelper mListener){
         this.context = context;
@@ -64,8 +65,5 @@ public abstract class CategoryListViewAdapter<T> extends RecyclerView.Adapter<Vi
         return items.get(position);
     }
 
-    public void update(ArrayList<T> concept){
-        this.items = concept;
-        notifyDataSetChanged();
-    }
+
 }
