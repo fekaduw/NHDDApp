@@ -20,6 +20,11 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="dividerLineColor">@color/dividerLineColor</item>
+        <item name="popuWindowsBackgroundColor">@color/popuWindowBackgroundColor_normalMode</item>
+
+        <!--
+                <item name="actionBarSize">@dimen/abc_action_bar_default_height_material</item>
+        -->
     </style>
 
     <!-- Night / dark mode application theme. -->
@@ -42,6 +47,10 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="dividerLineColor">@color/nightModeDividerLineColor</item>
+        <item name="popuWindowsBackgroundColor">@color/popuWindowBackgroundColor_nightMode</item>
+<!--
+        <item name="actionBarSize">@dimen/abc_action_bar_default_height_material</item>
+-->
     </style>
 
 

@@ -16,9 +16,9 @@ public class HMISIndicatorConcept extends RealmObject {
     private String concept_class;
     private String display_name;
 
-   /* @SerializedName("descriptions")
-    private RealmList<HMISIndicatorDescription> descriptions;
-*/
+    @SerializedName("descriptions")
+    private RealmList<HMISIndicatorDescriptions> descriptions;
+
     private String source;
     private String version;
     private String created_on;

@@ -13,4 +13,6 @@
     <color name="cardviewLightBackground">#FFFFFFFF</color>
     <color name="nightModeDividerLineColor">#3d434a</color>
     <color name="dividerLineColor">#e8e8e8</color>
+    <color name="popuWindowBackgroundColor_normalMode">#fff</color>
+    <color name="popuWindowBackgroundColor_nightMode">#363d45</color>
 </resources>

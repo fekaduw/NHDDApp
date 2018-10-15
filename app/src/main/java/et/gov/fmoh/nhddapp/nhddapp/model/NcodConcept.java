@@ -1,12 +1,10 @@
 package et.gov.fmoh.nhddapp.nhddapp.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 import lombok.Getter;
@@ -22,7 +20,10 @@ public class NcodConcept extends RealmObject implements Serializable
     private String datatype;
     private String concept_class;
     private String display_name;
-    //private String descriptions;
+
+    @SerializedName("descriptions")
+    private RealmList<NcodDescriptions> descriptions;
+
     private String source;
     private String version;
     private String created_on;

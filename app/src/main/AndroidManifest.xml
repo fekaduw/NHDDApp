@@ -25,7 +25,8 @@
         </activity>
         <activity
             android:name=".views.MainActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:configChanges="keyboardHidden|orientation">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
@@ -33,7 +34,8 @@
         <activity
             android:name=".views.HelpSupportActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".views.MainActivity">
+            android:parentActivityName=".views.MainActivity"
+            android:configChanges="keyboardHidden|orientation">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".views.MainActivity" />
@@ -42,7 +44,8 @@
         <activity
             android:name=".views.SettingsActivity"
             android:label="@string/nav_setting"
-            android:parentActivityName=".views.MainActivity">
+            android:parentActivityName=".views.MainActivity"
+            android:configChanges="keyboardHidden|orientation">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".views.MainActivity" />
@@ -51,7 +54,8 @@
         <activity
             android:name=".views.NcodDetailActivity"
             android:label="NCoD - Detail"
-            android:parentActivityName=".views.ConceptListActivity">
+            android:parentActivityName=".views.ConceptListActivity"
+            android:configChanges="keyboardHidden|orientation">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".views.ConceptListActivity" />
@@ -60,7 +64,8 @@
         <activity
             android:name=".views.HmisDetailActivity"
             android:label="HMIS Indicator - Detail"
-            android:parentActivityName=".views.ConceptListActivity">
+            android:parentActivityName=".views.ConceptListActivity"
+            android:configChanges="keyboardHidden|orientation">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".views.ConceptListActivity" />
@@ -69,7 +74,8 @@
         <activity
             android:name=".views.UpdateActivity"
             android:label="@string/data_update"
-            android:parentActivityName=".views.MainActivity">
+            android:parentActivityName=".views.MainActivity"
+            android:configChanges="keyboardHidden|orientation">
             <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -81,7 +87,8 @@
         </activity>
         <activity android:name=".views.ConceptListActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".views.MainActivity">
+            android:parentActivityName=".views.MainActivity"
+            android:configChanges="keyboardHidden|orientation">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".views.MainActivity" />

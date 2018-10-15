@@ -1,74 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="350dp"
-    android:layout_height="470dp"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:padding="15dp"
-    android:background="@color/lightGray"
-    >
+    android:background="?attr/popuWindowsBackgroundColor"
+    android:padding="15dp">
 
-    <ImageView
+<ImageView
+        android:id="@+id/imageView"
         android:layout_width="137dp"
         android:layout_height="91dp"
         android:layout_gravity="center"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/fmon_logo" />
+        android:src="@drawable/fmon_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="15dp"
         android:layout_gravity="center"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/title_activity_feedback"
+        android:textColor="?attr/tintColor"
+        android:textSize="25sp"
         android:textStyle="bold"
-        android:textSize="25dp"
-        android:text="@string/title_activity_feedback"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="15dp"
-        android:text="@string/message_activity_feedback"/>
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#D3D3D3"></TableRow>
+        android:id="@+id/textView8"
+        android:layout_width="303dp"
+        android:layout_height="23dp"
+        android:layout_margin="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/message_activity_feedback"
+        android:textColor="?attr/tintColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:inputType="text"
         android:id="@+id/feedback_textView"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:focusableInTouchMode="true"
         android:hint="Your opinion"
-        />
+        android:inputType="text"
+        android:textColor="?attr/tintColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/feedback_email" />
 
     <EditText
         android:id="@+id/feedback_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:hint="Your email (required)"
         android:inputType="textEmailAddress"
-        android:paddingTop="20dp"
-        android:hint="Your email (required)"/>
+        android:textColor="?attr/tintColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:focusableInTouchMode="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:paddingTop="20dp"
+        android:layout_width="177dp"
+        android:layout_height="49dp"
+        android:layout_gravity="right"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
         android:orientation="horizontal"
-        android:layout_gravity="right">
-    <Button
-        android:id="@+id/cancel_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/feedback_textView">
+
+        <Button
+            android:id="@+id/cancel_button"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-        android:textColor="@color/light_blue"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:text="Cancel"/>
+            android:text="Cancel"
+            android:textColor="@color/light_blue" />
 
-    <Button
-        android:id="@+id/send_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/light_blue"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:text="Send"/>
+        <Button
+            android:id="@+id/send_button"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send"
+            android:textColor="@color/light_blue" />
     </LinearLayout>
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>

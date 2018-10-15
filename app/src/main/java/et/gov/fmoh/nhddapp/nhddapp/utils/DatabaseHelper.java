@@ -20,6 +20,7 @@ import et.gov.fmoh.nhddapp.nhddapp.model.HMISIndicatorConcept;
 import et.gov.fmoh.nhddapp.nhddapp.model.HMISIndicatorExtra;
 import et.gov.fmoh.nhddapp.nhddapp.model.NCoD;
 import et.gov.fmoh.nhddapp.nhddapp.model.NcodConcept;
+import et.gov.fmoh.nhddapp.nhddapp.model.NcodDescriptions;
 import et.gov.fmoh.nhddapp.nhddapp.model.NcodExtras;
 import io.realm.Realm;
 import io.realm.RealmList;
@@ -143,6 +144,12 @@ public class DatabaseHelper<T> {
 
                 if (!TextUtils.isEmpty (r.getExtras().getICD10Chapter()) && r.getExtras().getICD10Chapter().equals(categoryName)) {
                     result.add(r);
+
+                    String desc = r.getDescriptions().size() > 0 ?r.getDescriptions().get(0).description
+                            : "NA";
+
+                    Log.d(TAG, "This concepts description is: "
+                            + desc);
                 }
             }
 

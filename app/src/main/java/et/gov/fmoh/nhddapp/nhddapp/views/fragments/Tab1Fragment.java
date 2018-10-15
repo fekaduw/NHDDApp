@@ -3,6 +3,7 @@ package et.gov.fmoh.nhddapp.nhddapp.views.fragments;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Binder;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -228,10 +229,10 @@ public class Tab1Fragment extends Fragment implements SearchView.OnQueryTextList
 
             @Override
             public void filter(String charText) {
-                charText = charText.toLowerCase(Locale.getDefault());
+                /*charText = charText.toLowerCase(Locale.getDefault());
                 concepts.clear();
 
-                if (charText.length() == 0) {
+                if (charText.length() == 0 && conceptFiltered.size() > 0) {
                     concepts.addAll(conceptFiltered);
                 } else {
                     for (NcodExtras row : conceptFiltered) {
@@ -244,7 +245,7 @@ public class Tab1Fragment extends Fragment implements SearchView.OnQueryTextList
                         }
                     }
                 }
-                notifyDataSetChanged();
+                notifyDataSetChanged();*/
             }
 
             @Override

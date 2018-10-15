@@ -10,17 +10,18 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import et.gov.fmoh.nhddapp.nhddapp.R;
 import et.gov.fmoh.nhddapp.nhddapp.model.ConceptVersion;
+import et.gov.fmoh.nhddapp.nhddapp.model.NcodConcept;
 import et.gov.fmoh.nhddapp.nhddapp.service.ApiClient;
 import et.gov.fmoh.nhddapp.nhddapp.utils.CONST;
 import et.gov.fmoh.nhddapp.nhddapp.utils.DataTypeConverter;
@@ -39,6 +40,7 @@ import lombok.val;
 
 import static et.gov.fmoh.nhddapp.nhddapp.utils.CONST.CATEGORY_HMIS_INDICATOR;
 import static et.gov.fmoh.nhddapp.nhddapp.utils.CONST.CATEGORY_NCOD;
+import static et.gov.fmoh.nhddapp.nhddapp.utils.CONST.TAG;
 
 public class UpdateActivity extends AppCompatActivity {
     @BindView(R.id.update_progressBar)
@@ -92,8 +94,8 @@ public class UpdateActivity extends AppCompatActivity {
         INTERNET_IS_AVAILABLE = isInternetAvailable();
 
         /*if (INTERNET_IS_AVAILABLE) {*/
-            btnUpdate.setEnabled(true);
-            checkForPermissions();
+        btnUpdate.setEnabled(true);
+        checkForPermissions();
        /* } else {
             btnUpdate.setEnabled(false);
         }*/
@@ -115,9 +117,8 @@ public class UpdateActivity extends AppCompatActivity {
 
 
                 }*/
-
-                updateNCoD();
-                updateHMIS();
+                showProgressBar(true);
+                importData();
             }
         });
     }
@@ -197,10 +198,39 @@ public class UpdateActivity extends AppCompatActivity {
         //return false;
     }
 
-    private void updateNCoD() {
-        showProgressBar(true);
-        DataUtils.importeNcodData(getApplicationContext(), getResources());
-        showProgressBar(false);
+    private void importData() {
+        Observable.concat(updateNCoD(), updateHMIS()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(Object o) {
+                Log.d(TAG, "onNext() called...");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.d(TAG, "There are some errors.");
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onComplete() {
+                Log.d(TAG, "onComplete() called. Data successfully added.");
+                showProgressBar(false);
+            }
+        });
+    }
+
+    private Observable updateNCoD() {
+        return Observable.create(emitter -> {
+            DataUtils.importeNcodData(getApplicationContext(), getResources());
+
+            emitter.onNext("NCOD Data successfully added");
+            emitter.onComplete();
+
         /*ConceptVersion version = ApiClient.getInstance().getNcodVersion().blockingFirst();
 
         if (isVersionLatest(version, CATEGORY_NCOD)) {
@@ -271,13 +301,15 @@ public class UpdateActivity extends AppCompatActivity {
                         showProgressBar(false);
                     }
                 });*/
+        });
     }
 
-    private void updateHMIS() {
-        showProgressBar(true);
-        DataUtils.importeHMISData(getApplicationContext(), getResources());
-        showProgressBar(false);
+    private Observable updateHMIS() {
+        return Observable.create(emitter -> {
+            DataUtils.importeHMISData(getApplicationContext(), getResources());
 
+            emitter.onNext("HMIS Data successfully added");
+            emitter.onComplete();
 
         /*ConceptVersion version = ApiClient.getInstance().getNcodVersion().blockingFirst();
 
@@ -349,8 +381,8 @@ public class UpdateActivity extends AppCompatActivity {
                         showProgressBar(false);
                     }
                 });*/
+        });
     }
-
     /*@SuppressLint("StaticFieldLeak")
     private void updateNCoD() {
         new AsyncTask<String, String, String>() {

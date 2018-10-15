@@ -179,7 +179,13 @@ public class ConceptListActivity<T> extends AppCompatActivity implements SearchV
                         bundle.putString("categoryName", categoryName);
 
                         bundle.putString("display_name", conceptNcod.get(position).getDisplay_name());
-                        bundle.putString("description", "NA");
+
+                        String description = conceptNcod.get(position).getDescriptions().size() > 0
+                                ? conceptNcod.get(position).getDescriptions().get(0).description
+                                : "NA";
+
+                        bundle.putString("description",!TextUtils.isEmpty(description) ? description : "NA");
+
                         bundle.putString("class_name", conceptNcod.get(position).getConcept_class());
                         bundle.putString("version_created_on", conceptNcod.get(position).getVersion_created_on());
                         bundle.putString("version", conceptNcod.get(position).getVersion());
@@ -254,7 +260,12 @@ public class ConceptListActivity<T> extends AppCompatActivity implements SearchV
                 bundle.putString("datatype", conceptHMIS.get(position).getDatatype());
                 bundle.putString("concept_class", conceptHMIS.get(position).getConcept_class());
                 bundle.putString("source", conceptHMIS.get(position).getSource());
-                bundle.putString("description", "NA");
+
+                String description = conceptHMIS.get(position).getDescriptions().size() > 0
+                        ? conceptHMIS.get(position).getDescriptions().get(0).description
+                        : "NA";
+                bundle.putString("description",!TextUtils.isEmpty(description) ? description : "NA");
+
                 bundle.putString("version_created_on", conceptHMIS.get(position).getVersion_created_on());
                 bundle.putString("version", conceptHMIS.get(position).getVersion());
 

@@ -2,6 +2,7 @@
 <resources>
     <declare-styleable name="ds">
         <attr name="backgroundColor" format="color" />
+        <attr name="popuWindowsBackgroundColor" format="color" />
         <attr name="noInternetConnBackgroundColor" format="color" />
         <attr name="noInternetConnTextColor" format="color" />
         <attr name="colorPrimary" format="color" />
@@ -13,6 +14,6 @@
         <attr name="buttonColor" format="color" />
         <attr name="statusColor" format="color" />
         <attr name="dividerLineColor" format="color" />
-        <!--<attr name="actionBarSize" format="dimension" />-->
+<!--        <attr name="actionBarSize" format="dimension" />-->
     </declare-styleable>
 </resources>

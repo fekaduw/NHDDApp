@@ -18,20 +18,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-
-import java.util.ArrayList;
-import java.util.List;
-
 import et.gov.fmoh.nhddapp.nhddapp.DrawFragment;
 import et.gov.fmoh.nhddapp.nhddapp.R;
-import et.gov.fmoh.nhddapp.nhddapp.model.NCoD;
-import et.gov.fmoh.nhddapp.nhddapp.model.NcodConcept;
 import et.gov.fmoh.nhddapp.nhddapp.utils.DatabaseHelper;
-import et.gov.fmoh.nhddapp.nhddapp.utils.CONST;
 import et.gov.fmoh.nhddapp.nhddapp.utils.SharedPref;
-import et.gov.fmoh.nhddapp.nhddapp.service.HmisDataSyncIntentService;
-import et.gov.fmoh.nhddapp.nhddapp.service.NcodDataSyncIntentService;
 import io.realm.Realm;
+import et.gov.fmoh.nhddapp.nhddapp.utils.CONST;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -164,14 +156,14 @@ public class MainActivity extends AppCompatActivity
                     Intent intent = new Intent(Intent.ACTION_SEND);
                     intent.setType("text/plain");
                     intent.putExtra(Intent.EXTRA_EMAIL, new String[] {emailAddress.getText().toString()});
-                    //intent.putExtra(Intent.EXTRA_CC, new String[] {"andy@whatever.com"});
                     intent.putExtra(Intent.EXTRA_SUBJECT, "Mail from app!");
-                    intent.putExtra(Intent.EXTRA_TEXT, "OMFG I just sent an email from my app!");
+                    intent.putExtra(Intent.EXTRA_TEXT, opinion.getText());
 
                     try {
                         startActivity(Intent.createChooser(intent, "How to send mail?"));
                     } catch (android.content.ActivityNotFoundException ex) {
-                        //do something else
+                        ex.printStackTrace();
+                        Log.d(CONST.TAG, "Error encountered while sending your feedback.");
                     }
                     //Toast.makeText(MainActivity.this, emailAddress.getText()+" " +opinion.getText(), Toast.LENGTH_LONG).show();
                 }

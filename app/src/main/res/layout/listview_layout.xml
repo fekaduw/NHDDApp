@@ -36,6 +36,7 @@
         android:layout_height="wrap_content"
         android:focusableInTouchMode="true"
         android:queryHint="@string/search_hint"
+
         />
 
     <android.support.v7.widget.RecyclerView
