@@ -18,10 +18,12 @@
             android:icon="@drawable/ic_settings"
             android:title="@string/nav_setting" />
 
+<!--
         <item
             android:icon="@drawable/ic_favorite"
             android:id="@+id/nav_favorite"
             android:title="@string/nav_favorite" />
+-->
 
         <item
             android:id="@+id/nav_help"

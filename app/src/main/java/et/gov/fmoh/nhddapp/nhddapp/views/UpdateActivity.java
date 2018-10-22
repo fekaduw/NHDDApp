@@ -117,7 +117,7 @@ public class UpdateActivity extends AppCompatActivity {
 
 
                 }*/
-                showProgressBar(true);
+                showProgressBar(false);
                 importData();
             }
         });
@@ -199,6 +199,7 @@ public class UpdateActivity extends AppCompatActivity {
     }
 
     private void importData() {
+        showProgressBar(true);
         Observable.concat(updateNCoD(), updateHMIS()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer() {
             @Override
             public void onSubscribe(Disposable d) {
@@ -208,6 +209,7 @@ public class UpdateActivity extends AppCompatActivity {
             @Override
             public void onNext(Object o) {
                 Log.d(TAG, "onNext() called...");
+
             }
 
             @Override
@@ -219,6 +221,7 @@ public class UpdateActivity extends AppCompatActivity {
             @Override
             public void onComplete() {
                 Log.d(TAG, "onComplete() called. Data successfully added.");
+                updateTextView.setText("Local database successfully updated.");
                 showProgressBar(false);
             }
         });
@@ -226,6 +229,8 @@ public class UpdateActivity extends AppCompatActivity {
 
     private Observable updateNCoD() {
         return Observable.create(emitter -> {
+            showProgressBar(true);
+            updateTextView.setText("NCoD data being updated...");
             DataUtils.importeNcodData(getApplicationContext(), getResources());
 
             emitter.onNext("NCOD Data successfully added");
@@ -306,6 +311,8 @@ public class UpdateActivity extends AppCompatActivity {
 
     private Observable updateHMIS() {
         return Observable.create(emitter -> {
+            showProgressBar(true);
+            updateTextView.setText("HMIS indicator data being updated...");
             DataUtils.importeHMISData(getApplicationContext(), getResources());
 
             emitter.onNext("HMIS Data successfully added");

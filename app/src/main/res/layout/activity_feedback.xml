@@ -3,8 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="350dp"
+    android:layout_height="470dp"
     android:layout_gravity="center"
     android:background="?attr/popuWindowsBackgroundColor"
     android:padding="15dp">
@@ -45,8 +45,8 @@
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="303dp"
-        android:layout_height="23dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -58,24 +58,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-    <EditText
-        android:id="@+id/feedback_textView"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:focusableInTouchMode="true"
-        android:hint="Your opinion"
-        android:inputType="text"
-        android:textColor="?attr/tintColor"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/feedback_email" />
-
-    <EditText
+ <!--   <EditText
         android:id="@+id/feedback_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -87,7 +70,23 @@
         android:inputType="textEmailAddress"
         android:textColor="?attr/tintColor"
         app:layout_constraintEnd_toEndOf="parent"
-        android:focusableInTouchMode="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+-->
+    <EditText
+        android:id="@+id/feedback_textView"
+        android:layout_width="0dp"
+        android:layout_height="119dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="44dp"
+        android:hint="Your opinion"
+        android:inputType="textMultiLine"
+        android:scrollbars="vertical"
+        android:textColor="?attr/tintColor"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
@@ -100,7 +99,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -11,6 +11,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity
 
     SharedPref sharedPref;
 
-    Dialog dialog ;
+    Dialog dialog;
 
     private DatabaseHelper databaseHelper;
 
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity
 
         sharedPref = new SharedPref(this);
 
-        setTheme (sharedPref.loadNightModeState()  ? R.style.DarkTheme : R.style.AppTheme);
+        setTheme(sharedPref.loadNightModeState() ? R.style.DarkTheme : R.style.AppTheme);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -120,52 +121,50 @@ public class MainActivity extends AppCompatActivity
             dialog.show();
             //Toast.makeText(MainActivity.this, "Hello World", Toast.LENGTH_LONG).show();
             //setFragment(new DrawFragment());
-        }
-        else if (id == R.id.nav_update) {
+        } else if (id == R.id.nav_update) {
             Intent updateIntent = new Intent(this, UpdateActivity.class);
             startActivity(updateIntent);
-        }
-        else if (id == R.id.nav_setting) {
+        } else if (id == R.id.nav_setting) {
             Intent settingIntent = new Intent(this, SettingsActivity.class);
             startActivity(settingIntent);
 
-        }
-        else if (id == R.id.nav_help) {
+        } else if (id == R.id.nav_help) {
             Intent helpSupportIntent = new Intent(this, HelpSupportActivity.class);
             startActivity(helpSupportIntent);
-        }
-        else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_share) {
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
             sendIntent.putExtra(Intent.EXTRA_TEXT, "Send your request to apps@fmoh.gov.et. to get the latest version of the 'NHDD Pocket' mobile app");
             sendIntent.setType("text/plain");
             startActivity(sendIntent);
 
-        }
-        else if (id == R.id.nav_feedback) {
+        } else if (id == R.id.nav_feedback) {
             dialog.setContentView(R.layout.activity_feedback);
-            dialog.show();
 
             Button button_send = dialog.findViewById(R.id.send_button);
             button_send.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    EditText emailAddress = dialog.findViewById(R.id.feedback_email);
+                    //EditText emailAddress = dialog.findViewById(R.id.feedback_email);
                     EditText opinion = dialog.findViewById(R.id.feedback_textView);
 
-                    Intent intent = new Intent(Intent.ACTION_SEND);
-                    intent.setType("text/plain");
-                    intent.putExtra(Intent.EXTRA_EMAIL, new String[] {emailAddress.getText().toString()});
-                    intent.putExtra(Intent.EXTRA_SUBJECT, "Mail from app!");
-                    intent.putExtra(Intent.EXTRA_TEXT, opinion.getText());
+                    if (TextUtils.isEmpty(opinion.getText())) {
+                        opinion.setError("Please enter your email address.");
+                    } else {
+                        Intent intent = new Intent(Intent.ACTION_SEND);
+                        intent.setType("text/plain");
 
-                    try {
-                        startActivity(Intent.createChooser(intent, "How to send mail?"));
-                    } catch (android.content.ActivityNotFoundException ex) {
-                        ex.printStackTrace();
-                        Log.d(CONST.TAG, "Error encountered while sending your feedback.");
+                        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"fekaduw@gmail.com"});//todo change
+                        intent.putExtra(Intent.EXTRA_SUBJECT, "Mail from NHDDPocket mobile app!");
+                        intent.putExtra(Intent.EXTRA_TEXT, opinion.getText());
+
+                        try {
+                            startActivity(Intent.createChooser(intent, "Select the email system..."));
+                        } catch (android.content.ActivityNotFoundException ex) {
+                            ex.printStackTrace();
+                            Log.d(CONST.TAG, "Error encountered while sending your feedback.");
+                        }
                     }
-                    //Toast.makeText(MainActivity.this, emailAddress.getText()+" " +opinion.getText(), Toast.LENGTH_LONG).show();
                 }
             });
 
@@ -176,6 +175,8 @@ public class MainActivity extends AppCompatActivity
                     dialog.dismiss();
                 }
             });
+
+            dialog.show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -183,8 +184,8 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public void setFragment(Fragment fragment){
-        if(fragment!=null){
+    public void setFragment(Fragment fragment) {
+        if (fragment != null) {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.content_main, fragment);
             transaction.commit();
@@ -194,7 +195,7 @@ public class MainActivity extends AppCompatActivity
         drawerLayout.closeDrawer(GravityCompat.START);
     }
 
-    private void isDataAvailable(){
+    private void isDataAvailable() {
         /*//check data availability
         if (!databaseHelper.isNCODDataAvailable(realm)) {
             Log.d(CONST.TAG, "NCoD data not available; update will start...");

@@ -1,70 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.emilsjolander.components.StickyScrollViewItems.StickyScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/scrollView"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <android.support.design.widget.CoordinatorLayout
+    android:layout_height="match_parent"
+    android:background="?attr/backgroundColor">
+    <!--
+    <com.emilsjolander.components.StickyScrollViewItems.StickyScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".views.NcodDetailActivity"
-        android:background="?attr/backgroundColor"
-        >
+        android:layout_height="match_parent">
 
-        <android.support.design.widget.AppBarLayout
+        <android.support.design.widget.CoordinatorLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay"
-            android:tag="sticky">
+            android:layout_height="match_parent"
+            tools:context=".views.NcodDetailActivity"
+            android:background="?attr/backgroundColor"
+            >
+    -->
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/abc_action_bar_default_height_material"
-                android:background="@drawable/appbar_gradient_background"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:tag="sticky"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        </android.support.design.widget.AppBarLayout>
-
-        <LinearLayout
-            android:id="@+id/detail_header"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="50dp"
+            android:layout_height="@dimen/abc_action_bar_default_height_material"
             android:background="@drawable/appbar_gradient_background"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:id="@+id/detail_header"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/appbar_gradient_background"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout4">
+
+        <ImageView
+            android:id="@+id/concept_icon"
+            android:layout_width="@dimen/detail_top_icon_size"
+            android:layout_height="@dimen/detail_top_icon_size"
+
             android:gravity="center"
-            android:orientation="vertical">
-            <ImageView
-                android:id="@+id/concept_icon"
-                android:layout_width="@dimen/detail_top_icon_size"
-                android:layout_height="@dimen/detail_top_icon_size"
+            android:textColor="?attr/textColor"
+            android:textSize="@dimen/detail_icon_text_size"
+            app:fontFamily="sans-serif" />
 
-                android:gravity="center"
-                android:textColor="?attr/textColor"
-                android:textSize="@dimen/detail_icon_text_size"
-                app:fontFamily="sans-serif" />
+        <TextView
+            android:id="@+id/title_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/detail_view_padding"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/detail_top_text_size"
+            app:fontFamily="@font/hind" />
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/title_detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="@dimen/detail_view_padding"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textSize="@dimen/detail_top_text_size"
-                app:fontFamily="@font/hind" />
-        </LinearLayout>
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:background="?attr/backgroundColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detail_header">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="250dp"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
             android:orientation="vertical">
 
             <RelativeLayout
@@ -87,9 +116,9 @@
                     android:paddingTop="@dimen/detail_view_padding"
                     android:text="Category-1"
                     android:textAllCaps="true"
+                    android:textColor="?attr/textColor"
                     android:textSize="@dimen/detail_header_font_size"
                     android:textStyle="bold"
-                    android:textColor="?attr/textColor"
                     app:fontFamily="@font/hind" />
             </RelativeLayout>
 
@@ -99,8 +128,8 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/detail_view_padding"
                 android:paddingLeft="@dimen/detail_view_label_padding_left"
-                android:textColor="?attr/mainTextColor"
                 android:text="@string/pref_description_social_recommendations"
+                android:textColor="?attr/mainTextColor"
                 android:textSize="@dimen/detail_value_font_size"
                 app:fontFamily="sans-serif" />
 
@@ -130,9 +159,9 @@
                     android:paddingTop="@dimen/detail_view_padding"
                     android:text="Category-2"
                     android:textAllCaps="true"
+                    android:textColor="?attr/textColor"
                     android:textSize="@dimen/detail_header_font_size"
                     android:textStyle="bold"
-                    android:textColor="?attr/textColor"
                     app:fontFamily="@font/hind" />
             </RelativeLayout>
 
@@ -142,8 +171,8 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/detail_view_padding"
                 android:paddingLeft="@dimen/detail_view_label_padding_left"
-                android:textColor="?attr/mainTextColor"
                 android:text="@string/pref_description_social_recommendations"
+                android:textColor="?attr/mainTextColor"
                 android:textSize="@dimen/detail_value_font_size"
                 app:fontFamily="sans-serif" />
 
@@ -152,6 +181,7 @@
                 android:layout_height="@dimen/detail_view_divider_line_height"
                 android:layout_marginLeft="@dimen/detail_view_label_padding_left"
                 android:background="?attr/dividerLineColor" />
+
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -172,9 +202,9 @@
                     android:paddingTop="@dimen/detail_view_padding"
                     android:text="Category-3"
                     android:textAllCaps="true"
+                    android:textColor="?attr/textColor"
                     android:textSize="@dimen/detail_header_font_size"
                     android:textStyle="bold"
-                    android:textColor="?attr/textColor"
                     app:fontFamily="@font/hind" />
             </RelativeLayout>
 
@@ -184,8 +214,8 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/detail_view_padding"
                 android:paddingLeft="@dimen/detail_view_label_padding_left"
-                android:textColor="?attr/mainTextColor"
                 android:text="@string/pref_description_social_recommendations"
+                android:textColor="?attr/mainTextColor"
                 android:textSize="@dimen/detail_value_font_size"
                 app:fontFamily="sans-serif" />
 
@@ -194,6 +224,7 @@
                 android:layout_height="@dimen/detail_view_divider_line_height"
                 android:layout_marginLeft="@dimen/detail_view_label_padding_left"
                 android:background="?attr/dividerLineColor" />
+
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -214,9 +245,9 @@
                     android:paddingTop="@dimen/detail_view_padding"
                     android:text="Category-4"
                     android:textAllCaps="true"
+                    android:textColor="?attr/textColor"
                     android:textSize="@dimen/detail_header_font_size"
                     android:textStyle="bold"
-                    android:textColor="?attr/textColor"
                     app:fontFamily="@font/hind" />
             </RelativeLayout>
 
@@ -226,8 +257,8 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/detail_view_padding"
                 android:paddingLeft="@dimen/detail_view_label_padding_left"
-                android:textColor="?attr/mainTextColor"
                 android:text="@string/pref_description_social_recommendations"
+                android:textColor="?attr/mainTextColor"
                 android:textSize="@dimen/detail_value_font_size"
                 app:fontFamily="sans-serif" />
 
@@ -256,8 +287,8 @@
                     android:paddingLeft="@dimen/detail_view_label_padding_left"
                     android:paddingTop="@dimen/detail_view_padding"
                     android:text="Description"
-                    android:textColor="?attr/textColor"
                     android:textAllCaps="true"
+                    android:textColor="?attr/textColor"
                     android:textSize="@dimen/detail_header_font_size"
                     android:textStyle="bold"
                     app:fontFamily="@font/hind" />
@@ -270,8 +301,8 @@
                 android:paddingBottom="@dimen/detail_view_padding"
                 android:paddingLeft="@dimen/detail_view_label_padding_left"
                 android:text="@string/pref_description_social_recommendations"
-                android:textSize="@dimen/detail_value_font_size"
                 android:textColor="?attr/mainTextColor"
+                android:textSize="@dimen/detail_value_font_size"
                 app:fontFamily="sans-serif" />
 
             <View
@@ -314,8 +345,8 @@
                 android:paddingBottom="@dimen/detail_view_padding"
                 android:paddingLeft="@dimen/detail_view_label_padding_left"
                 android:text="Diagnosis"
-                android:textSize="@dimen/detail_value_font_size"
                 android:textColor="?attr/mainTextColor"
+                android:textSize="@dimen/detail_value_font_size"
                 app:fontFamily="sans-serif" />
 
             <View
@@ -343,8 +374,8 @@
                     android:paddingLeft="@dimen/detail_view_label_padding_left"
                     android:paddingTop="@dimen/detail_view_padding"
                     android:text="Source"
-                    android:textColor="?attr/textColor"
                     android:textAllCaps="true"
+                    android:textColor="?attr/textColor"
                     android:textSize="@dimen/detail_header_font_size"
                     android:textStyle="bold"
                     app:fontFamily="@font/hind" />
@@ -384,10 +415,10 @@
                     android:layout_height="wrap_content"
                     android:paddingBottom="@dimen/detail_view_label_padding_bottom"
                     android:paddingLeft="@dimen/detail_view_label_padding_left"
-                    android:textColor="?attr/textColor"
                     android:paddingTop="@dimen/detail_view_padding"
                     android:text="Data type"
                     android:textAllCaps="true"
+                    android:textColor="?attr/textColor"
                     android:textSize="@dimen/detail_header_font_size"
                     android:textStyle="bold"
                     app:fontFamily="@font/hind" />
@@ -399,8 +430,8 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/detail_view_label_padding_left"
                 android:text="Latest version"
-                android:textSize="@dimen/detail_value_font_size"
                 android:textColor="?attr/mainTextColor"
+                android:textSize="@dimen/detail_value_font_size"
                 app:fontFamily="sans-serif" />
 
             <View
@@ -428,8 +459,8 @@
                     android:paddingLeft="@dimen/detail_view_label_padding_left"
                     android:paddingTop="@dimen/detail_view_padding"
                     android:text="Numerator"
-                    android:textColor="?attr/textColor"
                     android:textAllCaps="true"
+                    android:textColor="?attr/textColor"
                     android:textSize="@dimen/detail_header_font_size"
                     android:textStyle="bold"
                     app:fontFamily="@font/hind" />
@@ -445,6 +476,7 @@
                 android:textColor="?attr/mainTextColor"
                 android:textSize="@dimen/detail_value_font_size"
                 app:fontFamily="sans-serif" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/detail_view_divider_line_height"
@@ -470,8 +502,8 @@
                     android:paddingLeft="@dimen/detail_view_label_padding_left"
                     android:paddingTop="@dimen/detail_view_padding"
                     android:text="Denominator"
-                    android:textColor="?attr/textColor"
                     android:textAllCaps="true"
+                    android:textColor="?attr/textColor"
                     android:textSize="@dimen/detail_header_font_size"
                     android:textStyle="bold"
                     app:fontFamily="@font/hind" />
@@ -513,8 +545,8 @@
                     android:paddingLeft="@dimen/detail_view_label_padding_left"
                     android:paddingTop="@dimen/detail_view_padding"
                     android:text="Disaggregation"
-                    android:textColor="?attr/textColor"
                     android:textAllCaps="true"
+                    android:textColor="?attr/textColor"
                     android:textSize="@dimen/detail_header_font_size"
                     android:textStyle="bold"
                     app:fontFamily="@font/hind" />
@@ -556,8 +588,8 @@
                     android:paddingLeft="@dimen/detail_view_label_padding_left"
                     android:paddingTop="@dimen/detail_view_padding"
                     android:text="Reporting frequency"
-                    android:textColor="?attr/textColor"
                     android:textAllCaps="true"
+                    android:textColor="?attr/textColor"
                     android:textSize="@dimen/detail_header_font_size"
                     android:textStyle="bold"
                     app:fontFamily="@font/hind" />
@@ -599,8 +631,8 @@
                     android:paddingLeft="@dimen/detail_view_label_padding_left"
                     android:paddingTop="@dimen/detail_view_padding"
                     android:text="Multiplier"
-                    android:textColor="?attr/textColor"
                     android:textAllCaps="true"
+                    android:textColor="?attr/textColor"
                     android:textSize="@dimen/detail_header_font_size"
                     android:textStyle="bold"
                     app:fontFamily="@font/hind" />
@@ -642,8 +674,8 @@
                     android:paddingLeft="@dimen/detail_view_label_padding_left"
                     android:paddingTop="@dimen/detail_view_padding"
                     android:text="Primary sources"
-                    android:textColor="?attr/textColor"
                     android:textAllCaps="true"
+                    android:textColor="?attr/textColor"
                     android:textSize="@dimen/detail_header_font_size"
                     android:textStyle="bold"
                     app:fontFamily="@font/hind" />
@@ -685,8 +717,8 @@
                     android:paddingLeft="@dimen/detail_view_label_padding_left"
                     android:paddingTop="@dimen/detail_view_padding"
                     android:text="Applicable reporting units"
-                    android:textColor="?attr/textColor"
                     android:textAllCaps="true"
+                    android:textColor="?attr/textColor"
                     android:textSize="@dimen/detail_header_font_size"
                     android:textStyle="bold"
                     app:fontFamily="@font/hind" />
@@ -728,8 +760,8 @@
                     android:paddingLeft="@dimen/detail_view_label_padding_left"
                     android:paddingTop="@dimen/detail_view_padding"
                     android:text="Version created on"
-                    android:textColor="?attr/textColor"
                     android:textAllCaps="true"
+                    android:textColor="?attr/textColor"
                     android:textSize="@dimen/detail_header_font_size"
                     android:textStyle="bold"
                     app:fontFamily="@font/hind" />
@@ -771,8 +803,8 @@
                     android:paddingLeft="@dimen/detail_view_label_padding_left"
                     android:paddingTop="@dimen/detail_view_padding"
                     android:text="Version"
-                    android:textColor="?attr/textColor"
                     android:textAllCaps="true"
+                    android:textColor="?attr/textColor"
                     android:textSize="@dimen/detail_header_font_size"
                     android:textStyle="bold"
                     app:fontFamily="@font/hind" />
@@ -789,8 +821,10 @@
                 android:textSize="@dimen/detail_value_font_size"
                 app:fontFamily="sans-serif" />
         </LinearLayout>
-
-        <!--
-        </RelativeLayout>-->
-    </android.support.design.widget.CoordinatorLayout>
-</com.emilsjolander.components.StickyScrollViewItems.StickyScrollView>
+    </android.support.v4.widget.NestedScrollView>
+    <!--
+    </RelativeLayout>-->
+    <!--
+        </android.support.design.widget.CoordinatorLayout>
+    </com.emilsjolander.components.StickyScrollViewItems.StickyScrollView>-->
+</android.support.constraint.ConstraintLayout>
